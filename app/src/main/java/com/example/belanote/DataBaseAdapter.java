@@ -10,16 +10,70 @@ import android.util.Log;
 
 public class DataBaseAdapter {
 
-    static final String IME_BAZE = "belanote_database";
-    static final String TABLICA_ZAPISI = "zapisi";
-    static final String ID = "id";
-    static final String BODOVIMI = "bodovi_mi";
-    static final String BODOVIVI = "bodovi_vi";
     static final int DATABASE_VERSION = 1;
-
     static final String LOG_TAG = "DataBaseHelper";
+    static final String IME_BAZE = "belanote_database";
 
-    static final String STVORI_TABLICU = "create table " + TABLICA_ZAPISI + " (" + ID + " integer primary key autoincrement, " + BODOVIMI + " integer, " + BODOVIVI + " integer);";
+
+    static final String ID_BOJA = "id_boja";
+    static final String TABLICA_BOJA = "boja";
+    static final String NAZIV_BOJE = "naziv_boje";
+
+    static final String STVORI_TABLICU_BOJA = "create table " + TABLICA_BOJA + " (" + ID_BOJA + " integer primary key autoincrement, " +
+            NAZIV_BOJE + " text not null);";
+
+    private static final String TABLICA_TIM = "tim";
+    private static final String NAZIV_TIMA = "naziv_tima";
+    private static final String ID_TIM = "id_tim";
+    static final String STVORI_TABLICU_TIM = "create table " + TABLICA_TIM + " (" + ID_TIM + " integer primary key autoincrement, " +
+            NAZIV_TIMA + " text not null);";
+
+    private static final String BROJ_PARTIJE = "broj_partije";
+    private static final String TABLICA_PARTIJA = "partija";
+    private static final String ID_PARTIJA = "id_partija";
+    static final String STVORI_TABLICU_PARTIJA = "create table " + TABLICA_PARTIJA + " (" + ID_PARTIJA + " integer primary key autoincrement, " +
+            BROJ_PARTIJE + " text not null);";
+
+    private static final String TABLICA_POBJEDNIK_PARTIJE = "pobjednik_partije";
+    private static final String ID_POBJEDNIK = "id_pobjednik";
+    private static final String FK_ID_PARTIJA_POBJEDNIK = "fk_id_partija_pobjednik";
+    private static final String FK_ID_TIM_POBJEDNIK = "fk_id_tim_pobjednik";
+    static final String STVORI_TABLICU_POBJEDNIK_PARTIJE = "create table " + TABLICA_POBJEDNIK_PARTIJE + " (" + ID_POBJEDNIK + " integer primary key autoincrement, " +
+            FK_ID_PARTIJA_POBJEDNIK + " integer not null unique, " +
+            FK_ID_TIM_POBJEDNIK + " integer not null, " +
+            "foreign key (" + FK_ID_PARTIJA_POBJEDNIK + ") references " + TABLICA_PARTIJA + " (" + ID_PARTIJA + "), " +
+            "foreign key (" + FK_ID_TIM_POBJEDNIK + ") references " + TABLICA_TIM + " (" + ID_TIM + "));";
+
+    static final String TABLICA_ZAPISI = "zapisi";
+    static final String ID_ZAPIS = "id_zapis";
+    static final String BODOVIMI = "mi_bodovi";
+    static final String BODOVIVI = "vi_bodovi";
+    private static final String MI_ZVANJA = "mi_zvanja";
+    private static final String TIM_PAO = "tim_pao";
+    private static final String FK_ID_BOJA = "fk_id_boja";
+    private static final String FK_ID_TIM_ZVAO = "fk_id_tim_zvao";
+    private static final String FK_ID_PARTIJA = "fk_id_partija";
+    private static final String VI_ZVANJA = "vi_zvanja";
+    static final String STVORI_TABLICU_ZAPIS = "create table " + TABLICA_ZAPISI + " (" + ID_ZAPIS + " integer primary key autoincrement, " +
+            BODOVIMI + " integer, " + BODOVIVI + " integer, " +
+            MI_ZVANJA + " integer, " + VI_ZVANJA + " integer, " +
+            TIM_PAO + " integer, " +
+            FK_ID_BOJA + " integer not null, " +
+            FK_ID_TIM_ZVAO + " integer not null, " +
+            FK_ID_PARTIJA + " integer not null, " +
+            "foreign key (" + FK_ID_BOJA + ") references " + TABLICA_BOJA + "(" + ID_BOJA + ")," +
+            "foreign key (fk_tim_zvao) references " + TABLICA_TIM + "(" + ID_TIM + ")," +
+            "foreign key (" + FK_ID_PARTIJA + ") references " + TABLICA_PARTIJA + "(" + ID_PARTIJA + "));"; // tim_pao je treba pretvoriti u boolean
+
+    static final String DODAJ_TREF = "insert into " + TABLICA_BOJA + " values ('Tref');";
+    static final String DODAJ_PIK = "insert into " + TABLICA_BOJA + " values ('Pik');";
+    static final String DODAJ_HERC = "insert into " + TABLICA_BOJA + " values ('Herc');";
+    static final String DODAJ_KARO = "insert into " + TABLICA_BOJA + " values ('Karo');";
+
+    static final String DODAJ_MI = "insert into " + TABLICA_TIM + " values ('Mi');";
+    static final String DODAJ_VI = "insert into " + TABLICA_TIM + " values ('Vi');";
+
+    static final String DODAJ_PARTIJU = "insert into " + TABLICA_PARTIJA + " values (1);";
 
     private SQLiteDatabase db;
 
@@ -32,7 +86,22 @@ public class DataBaseAdapter {
         @Override
         public void onCreate(SQLiteDatabase baza) {
             try{
-                baza.execSQL(STVORI_TABLICU);
+                baza.execSQL(STVORI_TABLICU_BOJA);
+                baza.execSQL(STVORI_TABLICU_TIM);
+                baza.execSQL(STVORI_TABLICU_PARTIJA);
+                baza.execSQL(STVORI_TABLICU_POBJEDNIK_PARTIJE);
+                baza.execSQL(STVORI_TABLICU_ZAPIS);
+
+                baza.execSQL(DODAJ_TREF);
+                baza.execSQL(DODAJ_PIK);
+                baza.execSQL(DODAJ_HERC);
+                baza.execSQL(DODAJ_KARO);
+
+                baza.execSQL(DODAJ_MI);
+                baza.execSQL(DODAJ_VI);
+
+                baza.execSQL(DODAJ_PARTIJU);
+
             }catch (SQLException e){
                 e.printStackTrace();
             }
@@ -42,13 +111,14 @@ public class DataBaseAdapter {
         public void onUpgrade(SQLiteDatabase baza, int i, int i1) {
             Log.w(LOG_TAG, "Upgrade iz verzije " + i + " u " + i1);
 
+            baza.execSQL("DROP TABLE IF EXISTS " + TABLICA_BOJA);
+            baza.execSQL("DROP TABLE IF EXISTS " + TABLICA_TIM);
+            baza.execSQL("DROP TABLE IF EXISTS " + TABLICA_PARTIJA);
+            baza.execSQL("DROP TABLE IF EXISTS " + TABLICA_POBJEDNIK_PARTIJE);
             baza.execSQL("DROP TABLE IF EXISTS " + TABLICA_ZAPISI);
 
             onCreate(baza);
         }
-
-
-
 
     }
 
@@ -69,10 +139,16 @@ public class DataBaseAdapter {
         dbHelper.close();
     }
 
-    public long insertZapis(int bodoviMi, int bodoviVi){
+    public long insertZapis(int bodoviMi, int bodoviVi, int zvanjaMi, int zvanjaVi, int boja, int zvao, boolean pao, int partija){
         ContentValues vrijednosti = new ContentValues();
         vrijednosti.put(BODOVIMI, bodoviMi);
         vrijednosti.put(BODOVIVI, bodoviVi);
+        vrijednosti.put(MI_ZVANJA, zvanjaMi);
+        vrijednosti.put(VI_ZVANJA, zvanjaVi);
+        vrijednosti.put(FK_ID_BOJA, boja);
+        vrijednosti.put(FK_ID_TIM_ZVAO, zvao);
+        vrijednosti.put(TIM_PAO, pao?1:0);
+        vrijednosti.put(FK_ID_PARTIJA, partija);
 
         return db.insert(TABLICA_ZAPISI, null, vrijednosti);
     }

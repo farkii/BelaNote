@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
          // bilo bi dobro da je sav kod vezan uz dbAdapter u posebnom sloju
         if(cursor.moveToFirst()){
             do{
-                Zapis zapis = new Zapis(cursor.getInt(1), cursor.getInt(2));
-                zapisi.add(zapis);
+                //Zapis zapis = new Zapis(cursor.getInt(1), cursor.getInt(2));
+                //zapisi.add(zapis);
             }while(cursor.moveToNext());
         }
         cursor.close();
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
         dbAdapter.open();
         for (int i = 0; i < 20; i++){
-            dbAdapter.insertZapis(random.nextInt(200), random.nextInt(200));
+            //dbAdapter.insertZapis(random.nextInt(200), random.nextInt(200));
         }
         dbAdapter.close();
     }

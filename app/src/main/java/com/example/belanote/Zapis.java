@@ -1,20 +1,16 @@
 package com.example.belanote;
 
 
+import android.util.Log;
 
 public class Zapis {
+    private static final String TAG = "Zapis";
+
     private int bodoviMi, bodoviVi, zvanjaMi, zvanjaVi, id_partija, id_boja, id_zvao;
     private boolean tim_pao;
-    private enum Boja {
-        TREF,
-        PIK,
-        HERC,
-        KARO
-    }
-    private enum Tim {
-        MI,
-        VI
-    }
+
+    private Boja boja;
+    private Tim zvao;
 
     // TODO dodati jos podatke o tome tko je zvao, koji je adut bio itd.
 
@@ -27,6 +23,76 @@ public class Zapis {
         this.id_partija = id_partija;
         this.id_boja = id_boja;
         this.id_zvao = id_zvao;
+        this.tim_pao = tim_pao;
+
+        switch(id_boja){
+            case 1:{
+                boja = Boja.TREF;
+                break;
+            }
+            case 2:{
+                boja = Boja.PIK;
+                break;
+            }
+            case 3:{
+                boja = Boja.HERC;
+                break;
+            }
+            case 4:{
+                boja = Boja.KARO;
+                break;
+            }
+            default:{
+                Log.w(TAG, "BOJA: id_boja se nije preslikala ni u jedan enum");
+                break;
+            }
+        }
+
+        switch(id_zvao){
+            case 1:{
+                zvao = Tim.MI;
+                break;
+            }
+            case 2:{
+                zvao = Tim.VI;
+                break;
+            }
+            default:{
+                Log.w(TAG, "ZVAO: id_zvao se nije preslikao ni u jedan enum");
+                break;
+            }
+        }
+    }
+
+    public int getZvanjaMi() {
+        return zvanjaMi;
+    }
+
+    public void setZvanjaMi(int zvanjaMi) {
+        this.zvanjaMi = zvanjaMi;
+    }
+
+    public int getZvanjaVi() {
+        return zvanjaVi;
+    }
+
+    public void setZvanjaVi(int zvanjaVi) {
+        this.zvanjaVi = zvanjaVi;
+    }
+
+    public int getId_partija() {
+        return id_partija;
+    }
+
+    public void setId_partija(int id_partija) {
+        this.id_partija = id_partija;
+    }
+
+    public boolean isTim_pao() {
+        return tim_pao;
+    }
+
+    public void setTim_pao(boolean tim_pao) {
         this.tim_pao = tim_pao;
     }
 
@@ -44,5 +110,21 @@ public class Zapis {
 
     public void setBodoviVi(int bodoviVi) {
         this.bodoviVi = bodoviVi;
+    }
+
+    public Boja getBoja() {
+        return boja;
+    }
+
+    public void setBoja(Boja boja) {
+        this.boja = boja;
+    }
+
+    public Tim getZvao() {
+        return zvao;
+    }
+
+    public void setZvao(Tim zvao) {
+        this.zvao = zvao;
     }
 }

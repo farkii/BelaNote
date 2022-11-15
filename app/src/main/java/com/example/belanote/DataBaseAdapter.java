@@ -84,4 +84,8 @@ public class DataBaseAdapter {
     public Cursor ispisiSveZapise(){
         return db.rawQuery("SELECT * FROM " + TABLICA_ZAPISI, null);
     }
+
+    public void obrisiSveZapise(){
+        return;
+    }
 }

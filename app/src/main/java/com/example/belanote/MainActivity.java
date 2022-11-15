@@ -60,8 +60,4 @@ public class MainActivity extends AppCompatActivity {
         }
         dbAdapter.close();
     }
-
-    public void ObrisiZapise(){
-        return;
-    }
 }

@@ -157,7 +157,7 @@ public class DataBaseAdapter {
         return false;
     }
 
-    public Cursor ispisiSveZapise(){
+    public Cursor dohvatiSveZapise(){
         return db.rawQuery("SELECT * FROM " + TABLICA_ZAPISI, null);
     }
 

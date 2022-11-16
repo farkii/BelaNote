@@ -26,15 +26,15 @@ public class MainActivity extends AppCompatActivity {
 
         dbAdapter = new DataBaseAdapter(this);
         zapisi = new ArrayList<Zapis>();
-        KreirajZapise();
+        kreirajZapise();
 
         recViewZapisi = this.findViewById(R.id.recViewRezultati);
         btnDodajZapis = this.findViewById(R.id.btnDodajZapis);
 
-        Azuriraj();
+        azuriraj();
     }
 
-    public void Azuriraj(){
+    public void azuriraj(){
         dbAdapter.open();
         Cursor cursor = dbAdapter.ispisiSveZapise();
          // bilo bi dobro da je sav kod vezan uz dbAdapter u posebnom sloju
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         recViewZapisi.setLayoutManager(new LinearLayoutManager(this));  // saznati kako se azuriraju podaci u rec viewu bez da se svaki put stvara novi
     }
 
-    public void KreirajZapise(){
+    public void kreirajZapise(){
         Random random = new Random();
         dbAdapter.open();
         for (int i = 0; i < 20; i++){

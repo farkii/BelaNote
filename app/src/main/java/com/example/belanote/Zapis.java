@@ -6,7 +6,7 @@ import android.util.Log;
 public class Zapis {
     private static final String TAG = "Zapis";
 
-    private int bodoviMi, bodoviVi, zvanjaMi, zvanjaVi, id_partija, id_boja, id_zvao;
+    private int bodoviMi, bodoviVi, zvanjaMi, zvanjaVi, id_partija, id_boja, id_zvao, ukupnoMi, ukupnoVi;
     private boolean tim_pao;
 
     private Boja boja;
@@ -24,6 +24,8 @@ public class Zapis {
         this.id_boja = id_boja;
         this.id_zvao = id_zvao;
         this.tim_pao = tim_pao;
+        this.ukupnoMi = bodoviMi + zvanjaMi;
+        this.ukupnoVi = bodoviVi + zvanjaVi;
 
         switch(id_boja){
             case 1:{
@@ -142,5 +144,13 @@ public class Zapis {
 
     public void setId_zvao(int id_zvao) {
         this.id_zvao = id_zvao;
+    }
+
+    public int getUkupnoMi() {
+        return ukupnoMi;
+    }
+
+    public int getUkupnoVi() {
+        return ukupnoVi;
     }
 }

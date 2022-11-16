@@ -37,6 +37,11 @@ public class DodajActivity extends AppCompatActivity {
         partija = 1;
         btnDodaj = this.findViewById(R.id.btn_dodaj_2act);
 
+        txtBodMi.setText("0");
+        txtBodVi.setText("0");
+        txtZvanjaMi.setText("0");
+        txtZvanjaVi.setText("0");
+
         btnDodaj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,11 +67,11 @@ public class DodajActivity extends AppCompatActivity {
             uspjeh = false;
         }
 
-        if(!rgTim.isSelected()){
+        if(rgTim.getCheckedRadioButtonId() == -1){
             Toast.makeText(this, "Potrebno je izabrati koji tim koji je zvao", Toast.LENGTH_SHORT).show();
             uspjeh = false;
         }
-        if(!rgAdut.isSelected()){
+        if(rgAdut.getCheckedRadioButtonId() == -1){
             Toast.makeText(this, "Potrebno je izabrati adut", Toast.LENGTH_SHORT).show();
             uspjeh = false;
         }

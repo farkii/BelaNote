@@ -75,16 +75,19 @@ public class PoslovniSloj {
         ArrayList<Zapis> listaZapisa = new ArrayList<Zapis>();
         listaZapisa = dohvatiSveZapise();
 
-        int sumMi = 0, sumVi = 0;
+        int sumMi = 0, sumVi = 0, razlika;
+        //TODO dodati jos koliko bodova fali tza svaki tim do pobjede nakon sto implementiras postavke
+
 
         for(Zapis zapis : listaZapisa){
             sumMi += zapis.getUkupnoMi();
             sumVi += zapis.getUkupnoVi();
         }
-
+        razlika = sumMi - sumVi;
         Bundle ukupnoPodaci = new Bundle();
         ukupnoPodaci.putInt("mi", sumMi);
         ukupnoPodaci.putInt("vi", sumVi);
+        ukupnoPodaci.putInt("razlika", razlika < 0 ? razlika*(-1) : razlika);
 
         return ukupnoPodaci;
     }

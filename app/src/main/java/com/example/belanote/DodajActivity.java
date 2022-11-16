@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class DodajActivity extends AppCompatActivity {
 
@@ -39,13 +40,38 @@ public class DodajActivity extends AppCompatActivity {
         btnDodaj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!poslovni.unesiZapis(stvoriZapis())) {
-                    Log.w(TAG, "Pogreska kod unosa podataka");
+                if(provjeraPodataka()) {
+                    if (!poslovni.unesiZapis(stvoriZapis())) {
+                        Log.w(TAG, "Pogreska kod unosa podataka");
+                    }
+                    finish();
+                }else{
+
                 }
-                finish();
             }
         });
 
+    }
+
+    private boolean provjeraPodataka(){
+        boolean uspjeh = true;
+        int bodMi = Integer.parseInt(txtBodMi.getText().toString()), bodVi = Integer.parseInt(txtBodVi.getText().toString());
+
+        if(bodMi+bodVi != 162){
+            Toast.makeText(this, "Suma bodova bez zvanja mora iznositi tocno 162", Toast.LENGTH_SHORT).show();
+            uspjeh = false;
+        }
+
+        if(!rgTim.isSelected()){
+            Toast.makeText(this, "Potrebno je izabrati koji tim koji je zvao", Toast.LENGTH_SHORT).show();
+            uspjeh = false;
+        }
+        if(!rgAdut.isSelected()){
+            Toast.makeText(this, "Potrebno je izabrati adut", Toast.LENGTH_SHORT).show();
+            uspjeh = false;
+        }
+
+        return uspjeh;
     }
 
     private Zapis stvoriZapis(){

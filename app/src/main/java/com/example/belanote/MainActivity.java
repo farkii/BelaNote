@@ -17,16 +17,18 @@ public class MainActivity extends AppCompatActivity {
     public RecyclerView recViewZapisi;
     public Button btnDodajZapis;
     public ArrayList<Zapis> zapisi;
-    public DataBaseAdapter dbAdapter;
+    PoslovniSloj poslovni;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dbAdapter = new DataBaseAdapter(this);
+        poslovni = PoslovniSloj.getInstance(this);
+
         zapisi = new ArrayList<Zapis>();
-        kreirajZapise();
+
 
         recViewZapisi = this.findViewById(R.id.recViewRezultati);
         btnDodajZapis = this.findViewById(R.id.btnDodajZapis);
@@ -35,29 +37,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void azuriraj(){
-        dbAdapter.open();
-        Cursor cursor = dbAdapter.ispisiSveZapise();
-         // bilo bi dobro da je sav kod vezan uz dbAdapter u posebnom sloju
-        if(cursor.moveToFirst()){
-            do{
-                //Zapis zapis = new Zapis(cursor.getInt(1), cursor.getInt(2));
-                //zapisi.add(zapis);
-            }while(cursor.moveToNext());
-        }
-        cursor.close();
-        dbAdapter.close();
-
+        zapisi = poslovni.dohvatiSveZapise();
         RedZapisaAdapter adapter = new RedZapisaAdapter(zapisi);
         recViewZapisi.setAdapter(adapter);
         recViewZapisi.setLayoutManager(new LinearLayoutManager(this));  // saznati kako se azuriraju podaci u rec viewu bez da se svaki put stvara novi
-    }
-
-    public void kreirajZapise(){
-        Random random = new Random();
-        dbAdapter.open();
-        for (int i = 0; i < 20; i++){
-            //dbAdapter.insertZapis(random.nextInt(200), random.nextInt(200));
-        }
-        dbAdapter.close();
     }
 }

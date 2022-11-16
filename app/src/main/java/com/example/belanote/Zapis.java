@@ -127,4 +127,20 @@ public class Zapis {
     public void setZvao(Tim zvao) {
         this.zvao = zvao;
     }
+
+    public int getId_boja() {
+        return id_boja;
+    }
+
+    public void setId_boja(int id_boja) {
+        this.id_boja = id_boja;
+    }
+
+    public int getId_zvao() {
+        return id_zvao;
+    }
+
+    public void setId_zvao(int id_zvao) {
+        this.id_zvao = id_zvao;
+    }
 }

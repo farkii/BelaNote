@@ -5,58 +5,161 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DodajActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relSviBodovi"
+        android:layout_marginBottom="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/header">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:text="Mi"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:text="Vi"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_below="@id/header"
+            android:id="@+id/bodovi">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Bodovi:"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:id="@+id/mi"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:id="@+id/vi"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_below="@id/bodovi"
+            android:id="@+id/zvanja">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Zvanja:"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:id="@+id/zvanja_mi"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:id="@+id/zvanja_vi"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_below="@id/zvanja"
+            android:id="@+id/ukupno">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Ukupno:"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:id="@+id/ukupno_mi"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:id="@+id/ukupno_vi"/>
+        </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/bodovi">
+        android:gravity="center"
+        android:layout_below="@id/relSviBodovi"
+        android:id="@+id/zvao">
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/mi"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/vi"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/bodovi"
-        android:id="@+id/zvanja">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/zvanja_mi"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/zvanja_vi"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/zvanja"
-        android:id="@+id/pao">
+            android:layout_weight="3"
+            android:text="Zvao:"/>
 
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/rg_pao">
+            android:layout_weight="1"
+            android:id="@+id/rg_zvao">
 
             <RadioButton
                 android:layout_width="match_parent"
@@ -78,13 +181,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/pao"
+        android:gravity="center"
+        android:layout_below="@id/zvao"
         android:id="@+id/adut">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="Adut:"/>
 
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_weight="1"
             android:id="@+id/rg_adut">
 
             <RadioButton
@@ -125,21 +236,24 @@
             android:layout_marginHorizontal="5dp"
             android:id="@+id/prvi">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:text="1"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:text="2"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
@@ -153,21 +267,24 @@
             android:id="@+id/drugi"
             android:layout_below="@+id/prvi">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:text="4"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:text="5"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
@@ -181,21 +298,24 @@
             android:id="@+id/treci"
             android:layout_below="@id/drugi">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:text="7"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:text="8"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
@@ -209,35 +329,38 @@
             android:id="@+id/cetvrti"
             android:layout_below="@id/treci">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:text="C"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:text="0"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:text="<"/>
+                android:text="DEL"/>
         </LinearLayout>
     </RelativeLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/brojevi"
         android:layout_centerHorizontal="true"
-        android:text="Dodaj"
+        android:text="Dodaj zapis"
         android:id="@+id/btn_dodaj_2act"/>
 
 </RelativeLayout>

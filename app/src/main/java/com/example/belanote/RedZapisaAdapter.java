@@ -28,8 +28,8 @@ public class RedZapisaAdapter extends RecyclerView.Adapter<RedZapisaAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtMi.setText(Integer.toString(zapisi.get(position).getBodoviMi()));
-        holder.txtVi.setText(Integer.toString(zapisi.get(position).getBodoviVi()));
+        holder.txtMi.setText(Integer.toString(zapisi.get(position).getBodoviMi() + zapisi.get(position).getZvanjaMi()));
+        holder.txtVi.setText(Integer.toString(zapisi.get(position).getBodoviVi() + zapisi.get(position).getZvanjaVi()));
     }
 
     @Override

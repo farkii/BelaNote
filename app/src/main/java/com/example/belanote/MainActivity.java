@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     public RecyclerView recViewZapisi;
     public Button btnDodajZapis;
+    public TextView txtUkupnoMi, txtUkupnoVi;
     public ArrayList<Zapis> zapisi;
+    public Bundle ukupnoPodaci;
     PoslovniSloj poslovni;
 
 
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         zapisi = new ArrayList<Zapis>();
 
+        txtUkupnoMi = this.findViewById(R.id.ukupno_mi_a1);
+        txtUkupnoVi = this.findViewById(R.id.ukupno_vi_a1);
 
         recViewZapisi = this.findViewById(R.id.recViewRezultati);
         btnDodajZapis = this.findViewById(R.id.btnDodajZapis);
@@ -45,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         azuriraj();
     }
 
@@ -57,10 +61,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void azuriraj(){
         zapisi = poslovni.dohvatiSveZapise();
+        ukupnoPodaci = poslovni.ukupniBodovi();
+
         if(zapisi.toArray().length > 0) {
             RedZapisaAdapter adapter = new RedZapisaAdapter(zapisi);
             recViewZapisi.setAdapter(adapter);
             recViewZapisi.setLayoutManager(new LinearLayoutManager(this));  // saznati kako se azuriraju podaci u rec viewu bez da se svaki put stvara novi
         }
+
+        txtUkupnoMi.setText(Integer.toString(ukupnoPodaci.getInt("mi", 0)));
+        txtUkupnoVi.setText(Integer.toString(ukupnoPodaci.getInt("vi", 0)));
+
     }
 }

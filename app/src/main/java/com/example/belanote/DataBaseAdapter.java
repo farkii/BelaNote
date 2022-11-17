@@ -153,6 +153,20 @@ public class DataBaseAdapter {
         return db.insert(TABLICA_ZAPISI, null, vrijednosti);
     }
 
+    public boolean updateZapis(int id, int bodoviMi, int bodoviVi, int zvanjaMi, int zvanjaVi, int boja, int zvao, boolean pao, int partija){
+        ContentValues vrijednosti = new ContentValues();
+        vrijednosti.put(BODOVIMI, bodoviMi);
+        vrijednosti.put(BODOVIVI, bodoviVi);
+        vrijednosti.put(MI_ZVANJA, zvanjaMi);
+        vrijednosti.put(VI_ZVANJA, zvanjaVi);
+        vrijednosti.put(FK_ID_BOJA, boja);
+        vrijednosti.put(FK_ID_TIM_ZVAO, zvao);
+        vrijednosti.put(TIM_PAO, pao?1:0);
+        vrijednosti.put(FK_ID_PARTIJA, partija);
+
+        return db.update(TABLICA_ZAPISI, vrijednosti, ID_ZAPIS + "=" + id, null) > 0;
+    }
+
     public boolean updateZapis(int id, int bodoviMi, int bodoviVi){ // TODO Implementirati logiku azuriranja postojecih podataka
         return false;
     }

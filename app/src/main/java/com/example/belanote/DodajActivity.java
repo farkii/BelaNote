@@ -46,7 +46,7 @@ public class DodajActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(provjeraPodataka()) {
-                    if (!poslovni.unesiZapis(stvoriZapis())) {
+                    if (!poslovni.unesiZapis(Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId()))+1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId()))+1, pao, partija)) {
                         Log.w(TAG, "Pogreska kod unosa podataka");
                     }
                     finish();
@@ -79,14 +79,4 @@ public class DodajActivity extends AppCompatActivity {
         return uspjeh;
     }
 
-    private Zapis stvoriZapis(){
-        return new Zapis(Integer.parseInt(txtBodMi.getText().toString()),
-                Integer.parseInt(txtBodVi.getText().toString()),
-                Integer.parseInt(txtZvanjaMi.getText().toString()),
-                Integer.parseInt(txtZvanjaVi.getText().toString()),
-                partija,
-                rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId()))+1,
-                rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId()))+1,
-                pao);
-    }
 }

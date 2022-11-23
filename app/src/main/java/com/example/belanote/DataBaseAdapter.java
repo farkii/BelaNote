@@ -164,11 +164,7 @@ public class DataBaseAdapter {
         vrijednosti.put(TIM_PAO, pao?1:0);
         vrijednosti.put(FK_ID_PARTIJA, partija);
 
-        return db.update(TABLICA_ZAPISI, vrijednosti, ID_ZAPIS + "=" + id, null) > 0;
-    }
-
-    public boolean updateZapis(int id, int bodoviMi, int bodoviVi){ // TODO Implementirati logiku azuriranja postojecih podataka
-        return false;
+        return db.update(TABLICA_ZAPISI, vrijednosti, ID_ZAPIS + "=?", new String[]{Integer.toString(id)}) > 0;
     }
 
     public Cursor dohvatiSveZapise(){

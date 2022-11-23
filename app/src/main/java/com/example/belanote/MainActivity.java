@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         ukupnoPodaci = poslovni.ukupniBodovi();
 
         if(zapisi.toArray().length > 0) {
-            RedZapisaAdapter adapter = new RedZapisaAdapter(zapisi);
+            RedZapisaAdapter adapter = new RedZapisaAdapter(this, zapisi);
             recViewZapisi.setAdapter(adapter);
             recViewZapisi.setLayoutManager(new LinearLayoutManager(this));  // saznati kako se azuriraju podaci u rec viewu bez da se svaki put stvara novi
         }

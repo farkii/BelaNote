@@ -15,7 +15,7 @@ public class Zapis {
     // TODO dodati jos podatke o tome tko je zvao, koji je adut bio itd.
 
 
-    public Zapis(int idZapis, int bodoviMi, int bodoviVi, int zvanjaMi, int zvanjaVi, int id_partija, int id_boja, int id_zvao, boolean tim_pao) {
+    public Zapis(int idZapis, int bodoviMi, int bodoviVi, int zvanjaMi, int zvanjaVi, int id_partija, int id_boja, int id_zvao) {
         this.idZapis = idZapis;
         this.bodoviMi = bodoviMi;
         this.bodoviVi = bodoviVi;
@@ -24,7 +24,7 @@ public class Zapis {
         this.id_partija = id_partija;
         this.id_boja = id_boja;
         this.id_zvao = id_zvao;
-        this.tim_pao = tim_pao;
+//        this.tim_pao = tim_pao;  u konstruktoru provjeriti da li je tim pao ili ne
         this.ukupnoMi = bodoviMi + zvanjaMi;
         this.ukupnoVi = bodoviVi + zvanjaVi;
 
@@ -54,10 +54,12 @@ public class Zapis {
         switch(id_zvao){
             case 1:{
                 zvao = Tim.MI;
+                this.tim_pao = ukupnoMi <= ukupnoVi;
                 break;
             }
             case 2:{
                 zvao = Tim.VI;
+                this.tim_pao = ukupnoVi <= ukupnoMi;
                 break;
             }
             default:{

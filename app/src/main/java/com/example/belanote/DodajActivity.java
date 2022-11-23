@@ -2,6 +2,7 @@ package com.example.belanote;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,7 +21,9 @@ public class DodajActivity extends AppCompatActivity{
 
     private final static String TAG = "DodajActivity";
 
-    public TextView txtBodMi, txtBodVi, txtZvanjaMi, txtZvanjaVi;
+    private int idZapis; //alocira se s postojecim podacima kod azuriranja postojeceg zapisa u metodi onStart()
+
+    public TextView txtBodMi, txtBodVi, txtZvanjaMi, txtZvanjaVi,txtUkupnoMi, txtUkupnoVi;
     public RadioGroup rgTim, rgAdut;
     public int partija;
     public Button btnDodaj;
@@ -76,6 +79,7 @@ public class DodajActivity extends AppCompatActivity{
                 String zaDodati = btn.getText().toString();
                 dodavanjeOznacenomPolju(zaDodati);
             }
+            racunanjeUkupnihBodova();
         }
     };
 
@@ -83,6 +87,8 @@ public class DodajActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dodaj);
+
+        idZapis = -1;
 
         poslovni = PoslovniSloj.getInstance(this);
 
@@ -97,6 +103,9 @@ public class DodajActivity extends AppCompatActivity{
 
         txtZvanjaVi = this.findViewById(R.id.zvanja_vi);
         txtZvanjaVi.setOnClickListener(oznaceniBodovi);
+
+        txtUkupnoMi = this.findViewById(R.id.ukupno_mi);
+        txtUkupnoVi = this.findViewById(R.id.ukupno_vi);
 
         rgTim = this.findViewById(R.id.rg_zvao);
         rgAdut = this.findViewById(R.id.rg_adut);
@@ -123,6 +132,7 @@ public class DodajActivity extends AppCompatActivity{
         txtZvanjaMi.setText("0");
         txtZvanjaVi.setText("0");
 
+
         oznacenoPolje = Polje.bodMi;
         promjenaBoja(oznacenoPolje.ordinal()+1);
 
@@ -130,14 +140,46 @@ public class DodajActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 if(provjeraPodataka()) {
-                    if (!poslovni.unesiZapis(Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId()))+1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId()))+1, pao, partija)) {
-                        Log.w(TAG, "Pogreska kod unosa podataka");
+                    if(idZapis != -1){
+                        if(!poslovni.azurirajZapis(stvoriZapisZaAzuriranje())){
+                            Log.w(TAG, "Pogreska kod azuriranja podataka");
+                        }
+                    }else {
+                        if (!poslovni.unesiZapis(Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId())) + 1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId())) + 1, pao, partija)) {
+                            Log.w(TAG, "Pogreska kod unosa podataka");
+                        }
                     }
                     finish();
                 }
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Intent intent = getIntent();
+        Bundle updatePodaci = intent.getExtras();
+
+        if(updatePodaci != null){
+            idZapis = updatePodaci.getInt("id");
+
+            txtBodMi.setText(Integer.toString(updatePodaci.getInt("bodMi")));
+            txtBodVi.setText(Integer.toString(updatePodaci.getInt("bodVi")));
+            txtZvanjaMi.setText(Integer.toString(updatePodaci.getInt("zvanjaMi")));
+            txtZvanjaVi.setText(Integer.toString(updatePodaci.getInt("zvanjaVi")));
+
+            String tekst = Integer.toString(updatePodaci.getInt("zvanjaVi"));
+
+            rgTim.check(rgTim.getChildAt(updatePodaci.getInt("zvao")-1).getId());
+            rgAdut.check(rgAdut.getChildAt(updatePodaci.getInt("adut")-1).getId());
+
+            racunanjeUkupnihBodova();
+
+
+        }
     }
 
     private boolean provjeraPodataka(){
@@ -203,7 +245,7 @@ public class DodajActivity extends AppCompatActivity{
         switch (oznacenoPolje){
             case bodMi:{
                 String broj = txtBodMi.getText().toString();
-                if(broj == "0"){
+                if(broj.equals("0")){
                     broj = zaDodati;
                 }else{
                     broj += zaDodati;
@@ -214,7 +256,7 @@ public class DodajActivity extends AppCompatActivity{
             }
             case bodVi:{
                 String broj = txtBodVi.getText().toString();
-                if(broj == "0"){
+                if(broj.equals("0")){
                     broj = zaDodati;
                 }else{
                     broj += zaDodati;
@@ -225,7 +267,7 @@ public class DodajActivity extends AppCompatActivity{
             }
             case zvanjaMi:{
                 String broj = txtZvanjaMi.getText().toString();
-                if(broj == "0"){
+                if(broj.equals("0")){
                     broj = zaDodati;
                 }else{
                     broj += zaDodati;
@@ -235,7 +277,7 @@ public class DodajActivity extends AppCompatActivity{
             }
             case zvanjaVi:{
                 String broj = txtZvanjaVi.getText().toString();
-                if(broj == "0"){
+                if(broj.equals("0")){
                     broj = zaDodati;
                 }else{
                     broj += zaDodati;
@@ -304,4 +346,18 @@ public class DodajActivity extends AppCompatActivity{
         return Integer.toString(drugiTim);
     }
 
+    private void racunanjeUkupnihBodova(){
+        int bodMi = Integer.parseInt(txtBodMi.getText().toString());
+        int bodVi = Integer.parseInt(txtBodVi.getText().toString());
+
+        int zvanjaMi = Integer.parseInt(txtZvanjaMi.getText().toString());
+        int zvanjaVi = Integer.parseInt(txtZvanjaVi.getText().toString());
+
+        txtUkupnoMi.setText(Integer.toString(bodMi + zvanjaMi));
+        txtUkupnoVi.setText(Integer.toString(bodVi + zvanjaVi));
+    }
+
+    private Zapis stvoriZapisZaAzuriranje(){
+        return new Zapis(idZapis, Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), 1, rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId())) + 1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId())) + 1);
+    }
 }

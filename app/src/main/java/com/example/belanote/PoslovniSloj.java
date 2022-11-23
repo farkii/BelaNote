@@ -43,7 +43,7 @@ public class PoslovniSloj {
             Cursor cursor = dbAdapter.dohvatiSveZapise();
             if (cursor.moveToFirst()) {
                 do {
-                    Zapis zapis = new Zapis(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(8), cursor.getInt(6), cursor.getInt(7), cursor.getInt(5) == 1 ? true : false);
+                    Zapis zapis = new Zapis(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(8), cursor.getInt(6), cursor.getInt(7));
                     listaZapisa.add(zapis);
                 } while (cursor.moveToNext());
             }

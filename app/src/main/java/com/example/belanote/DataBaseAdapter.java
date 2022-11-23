@@ -63,7 +63,12 @@ public class DataBaseAdapter {
             FK_ID_PARTIJA + " integer not null, " +
             "foreign key (" + FK_ID_BOJA + ") references " + TABLICA_BOJA + "(" + ID_BOJA + ")," +
             "foreign key (" + FK_ID_TIM_ZVAO + ") references " + TABLICA_TIM + " (" + ID_TIM + "), " +
-            "foreign key (" + FK_ID_PARTIJA + ") references " + TABLICA_PARTIJA + " (" + ID_PARTIJA + "));"; // tim_pao je treba pretvoriti u boolean
+            "foreign key (" + FK_ID_PARTIJA + ") references " + TABLICA_PARTIJA + " (" + ID_PARTIJA + "));"; // tim_pao treba pretvoriti u boolean
+
+    private static final String GRANICA = "granica";
+    private static final String TABLICA_GRANICA = GRANICA;
+    private static final String ID_GRANICA = "id_" + GRANICA;
+    static final String STVORI_TABLICU_GRANICA = "create table " + TABLICA_GRANICA + " (" + ID_GRANICA + " integer primary key autoincrement, " + GRANICA + " integer not null);";
 
     static final String DODAJ_TREF = "insert into " + TABLICA_BOJA + "(" + ID_BOJA + ", " + NAZIV_BOJE + ")" + " values (1, 'Tref');";
     static final String DODAJ_PIK = "insert into " + TABLICA_BOJA + "(" + ID_BOJA + ", " + NAZIV_BOJE + ")" +  " values (2, 'Pik');";
@@ -74,6 +79,8 @@ public class DataBaseAdapter {
     static final String DODAJ_VI = "insert into " + TABLICA_TIM +  "(" + ID_TIM + ", " + NAZIV_TIMA + ")" + " values (2, 'Vi');";
 
     static final String DODAJ_PARTIJU = "insert into " + TABLICA_PARTIJA +  "(" + ID_PARTIJA + ", " + BROJ_PARTIJE + ")" +  " values (1, 1);";
+
+    static final String DODAJ_GRANICU = "insert into " + TABLICA_GRANICA + "(" + ID_GRANICA + ", " + GRANICA + ")" + " values (1, 1001);";
 
     private SQLiteDatabase db;
 
@@ -91,6 +98,7 @@ public class DataBaseAdapter {
                 baza.execSQL(STVORI_TABLICU_PARTIJA);
                 baza.execSQL(STVORI_TABLICU_POBJEDNIK_PARTIJE);
                 baza.execSQL(STVORI_TABLICU_ZAPIS);
+                baza.execSQL(STVORI_TABLICU_GRANICA);
 
                 baza.execSQL(DODAJ_TREF);
                 baza.execSQL(DODAJ_PIK);
@@ -101,6 +109,8 @@ public class DataBaseAdapter {
                 baza.execSQL(DODAJ_VI);
 
                 baza.execSQL(DODAJ_PARTIJU);
+
+                baza.execSQL(DODAJ_GRANICU);
 
             }catch (SQLException e){
                 e.printStackTrace();
@@ -116,6 +126,7 @@ public class DataBaseAdapter {
             baza.execSQL("DROP TABLE IF EXISTS " + TABLICA_PARTIJA);
             baza.execSQL("DROP TABLE IF EXISTS " + TABLICA_POBJEDNIK_PARTIJE);
             baza.execSQL("DROP TABLE IF EXISTS " + TABLICA_ZAPISI);
+            baza.execSQL("DROP TABLE IF EXISTS " + TABLICA_GRANICA);
 
             onCreate(baza);
         }
@@ -153,6 +164,13 @@ public class DataBaseAdapter {
         return db.insert(TABLICA_ZAPISI, null, vrijednosti);
     }
 
+    public boolean updateGranica(int bodovi){
+        ContentValues vrijednosti = new ContentValues();
+        vrijednosti.put(GRANICA, bodovi);
+
+        return db.update(TABLICA_GRANICA, vrijednosti, ID_GRANICA + "=?", new String[]{Integer.toString(1)}) > 0;
+    }
+
     public boolean updateZapis(int id, int bodoviMi, int bodoviVi, int zvanjaMi, int zvanjaVi, int boja, int zvao, boolean pao, int partija){
         ContentValues vrijednosti = new ContentValues();
         vrijednosti.put(BODOVIMI, bodoviMi);
@@ -169,6 +187,10 @@ public class DataBaseAdapter {
 
     public Cursor dohvatiSveZapise(){
         return db.rawQuery("SELECT * FROM " + TABLICA_ZAPISI, null);
+    }
+
+    public Cursor dohvatiGranicu(){
+        return db.rawQuery("SELECT * FROM " + TABLICA_GRANICA, null);
     }
 
     public void obrisiSveZapise(){

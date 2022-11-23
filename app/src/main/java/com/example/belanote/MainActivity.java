@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
+
+    private static int granicaBodovi;
+
     public RecyclerView recViewZapisi;
     public Button btnDodajZapis;
     public TextView txtUkupnoMi, txtUkupnoVi;
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        granicaBodovi = poslovni.dohvatiGranicu();
         azuriraj();
     }
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -40,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
         zapisi = new ArrayList<Zapis>();
 
+        Postavke postavke = new Postavke(this);
+        if(postavke.dohvatiGranicu() == -1){
+            postavke.dodajGranicu(1001);
+        }
+
         txtUkupnoMi = this.findViewById(R.id.ukupno_mi_a1);
         txtUkupnoVi = this.findViewById(R.id.ukupno_vi_a1);
 
@@ -53,19 +59,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        azuriraj();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        granicaBodovi = poslovni.dohvatiGranicu();
+
+        Postavke postavke = new Postavke(this);
+        granicaBodovi = postavke.dohvatiGranicu();
         azuriraj();
     }
 
     public void azuriraj(){
         zapisi = poslovni.dohvatiSveZapise();
         ukupnoPodaci = poslovni.ukupniBodovi();
+        int ukupnoMi = ukupnoPodaci.getInt("mi", 0);
+        int ukupnoVi = ukupnoPodaci.getInt("vi", 0);
 
         if(zapisi.toArray().length > 0) {
             RedZapisaAdapter adapter = new RedZapisaAdapter(this, zapisi);
@@ -73,8 +82,13 @@ public class MainActivity extends AppCompatActivity {
             recViewZapisi.setLayoutManager(new LinearLayoutManager(this));  // saznati kako se azuriraju podaci u rec viewu bez da se svaki put stvara novi
         }
 
-        txtUkupnoMi.setText(Integer.toString(ukupnoPodaci.getInt("mi", 0)));
-        txtUkupnoVi.setText(Integer.toString(ukupnoPodaci.getInt("vi", 0)));
+        txtUkupnoMi.setText(Integer.toString(ukupnoMi));
+        txtUkupnoVi.setText(Integer.toString(ukupnoVi));
+
+        if(ukupnoMi >= granicaBodovi || ukupnoVi >= granicaBodovi){
+            Toast.makeText(this, "Pobjedio je netko", Toast.LENGTH_SHORT).show(); // samo za testiranje
+        }
+        //TODO implementirati provjeru ko je imao više ako oba imaju više od granice, upisati u bazu pobjednika i prikazati broj bodova za svakog
 
     }
 }

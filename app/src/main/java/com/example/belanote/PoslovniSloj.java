@@ -106,29 +106,4 @@ public class PoslovniSloj {
         return ukupnoPodaci;
     }
 
-    public int dohvatiGranicu(){
-        int granica = 0;
-
-        try {
-            dbAdapter.open();
-            Cursor cursor = dbAdapter.dohvatiGranicu();
-            if(cursor.moveToFirst()) granica = cursor.getInt(1);
-            cursor.close();
-            dbAdapter.close();
-        }catch (Exception e){
-            Toast.makeText(context, "Pogreska kod dohvacanja granice", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-
-        return granica;
-    }
-
-    public boolean azurirajGranicu(){
-        boolean uspjeh = false;
-
-
-
-        return uspjeh;
-    }
-
 }

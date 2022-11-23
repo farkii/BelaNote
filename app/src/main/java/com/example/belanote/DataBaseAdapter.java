@@ -63,7 +63,8 @@ public class DataBaseAdapter {
             FK_ID_PARTIJA + " integer not null, " +
             "foreign key (" + FK_ID_BOJA + ") references " + TABLICA_BOJA + "(" + ID_BOJA + ")," +
             "foreign key (" + FK_ID_TIM_ZVAO + ") references " + TABLICA_TIM + " (" + ID_TIM + "), " +
-            "foreign key (" + FK_ID_PARTIJA + ") references " + TABLICA_PARTIJA + " (" + ID_PARTIJA + "));"; // tim_pao je treba pretvoriti u boolean
+            "foreign key (" + FK_ID_PARTIJA + ") references " + TABLICA_PARTIJA + " (" + ID_PARTIJA + "));"; // tim_pao treba pretvoriti u boolean
+
 
     static final String DODAJ_TREF = "insert into " + TABLICA_BOJA + "(" + ID_BOJA + ", " + NAZIV_BOJE + ")" + " values (1, 'Tref');";
     static final String DODAJ_PIK = "insert into " + TABLICA_BOJA + "(" + ID_BOJA + ", " + NAZIV_BOJE + ")" +  " values (2, 'Pik');";
@@ -74,6 +75,7 @@ public class DataBaseAdapter {
     static final String DODAJ_VI = "insert into " + TABLICA_TIM +  "(" + ID_TIM + ", " + NAZIV_TIMA + ")" + " values (2, 'Vi');";
 
     static final String DODAJ_PARTIJU = "insert into " + TABLICA_PARTIJA +  "(" + ID_PARTIJA + ", " + BROJ_PARTIJE + ")" +  " values (1, 1);";
+
 
     private SQLiteDatabase db;
 
@@ -164,16 +166,13 @@ public class DataBaseAdapter {
         vrijednosti.put(TIM_PAO, pao?1:0);
         vrijednosti.put(FK_ID_PARTIJA, partija);
 
-        return db.update(TABLICA_ZAPISI, vrijednosti, ID_ZAPIS + "=" + id, null) > 0;
-    }
-
-    public boolean updateZapis(int id, int bodoviMi, int bodoviVi){ // TODO Implementirati logiku azuriranja postojecih podataka
-        return false;
+        return db.update(TABLICA_ZAPISI, vrijednosti, ID_ZAPIS + "=?", new String[]{Integer.toString(id)}) > 0;
     }
 
     public Cursor dohvatiSveZapise(){
         return db.rawQuery("SELECT * FROM " + TABLICA_ZAPISI, null);
     }
+
 
     public void obrisiSveZapise(){
         return;

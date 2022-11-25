@@ -85,10 +85,8 @@ public class MainActivity extends AppCompatActivity {
         txtUkupnoMi.setText(Integer.toString(ukupnoMi));
         txtUkupnoVi.setText(Integer.toString(ukupnoVi));
 
-        if(ukupnoMi >= granicaBodovi || ukupnoVi >= granicaBodovi){
-            Toast.makeText(this, "Pobjedio je netko", Toast.LENGTH_SHORT).show(); // samo za testiranje
-        }
-        //TODO implementirati provjeru ko je imao više ako oba imaju više od granice, upisati u bazu pobjednika i prikazati broj bodova za svakog
+        poslovni.provjeraPobjede(granicaBodovi);
+
 
     }
 }

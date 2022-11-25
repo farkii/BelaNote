@@ -106,4 +106,13 @@ public class PoslovniSloj {
         return ukupnoPodaci;
     }
 
+    public void provjeraPobjede(int granica){
+        int ukupnoMi  = ukupniBodovi().getInt("mi", 0), ukupnoVi = ukupniBodovi().getInt("vi", 0);
+        if(ukupnoMi >= granica || ukupnoVi >= granica){
+            Toast.makeText(context, "Pobjedio je netko", Toast.LENGTH_SHORT).show(); // samo za testiranje
+        }
+
+        //TODO implementirati provjeru ko je imao više ako oba imaju više od granice, upisati u bazu pobjednika, dodati novu partiju u tablicu partija
+    }
+
 }

@@ -37,12 +37,12 @@ public class PoslovniSloj {
         return instance;
     }
 
-    public ArrayList<Zapis> dohvatiSveZapise(){
+    public ArrayList<Zapis> dohvatiSveZapise(int partija){
         ArrayList<Zapis> listaZapisa = new ArrayList<Zapis>();
 
         try {
             dbAdapter.open();
-            Cursor cursor = dbAdapter.dohvatiSveZapise();
+            Cursor cursor = dbAdapter.dohvatiSveZapise(partija);
             if (cursor.moveToFirst()) {
                 do {
                     Zapis zapis = new Zapis(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(8), cursor.getInt(6), cursor.getInt(7));
@@ -85,9 +85,27 @@ public class PoslovniSloj {
         return uspjeh;
     }
 
-    public Bundle ukupniBodovi(){
+    public int dohvatiZadnjuPartiju(){
+        int partija = -1;
+
+        try {
+            dbAdapter.open();
+            Cursor cursor = dbAdapter.dohvatiPartije();
+            if(cursor.moveToLast()){
+                partija = cursor.getInt(1);
+            }
+            cursor.close();
+            dbAdapter.close();
+        }catch (Exception e){
+            Toast.makeText(context, "Pogreska kod dohvacanja partije", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        return partija;
+    }
+
+    public Bundle ukupniBodovi(int partija){
         ArrayList<Zapis> listaZapisa = new ArrayList<Zapis>();
-        listaZapisa = dohvatiSveZapise();
+        listaZapisa = dohvatiSveZapise(partija);
 
         int sumMi = 0, sumVi = 0, razlika;
         //TODO dodati jos koliko bodova fali za svaki tim do pobjede nakon sto implementiras postavke
@@ -106,17 +124,32 @@ public class PoslovniSloj {
         return ukupnoPodaci;
     }
 
-    private void pobjeda(){
-
+    private boolean pobjeda(int partija, int tim){
+        boolean uspjeh = false;
+        try {
+            dbAdapter.open();
+            uspjeh = dbAdapter.insertPobjednik(partija, tim);
+            dbAdapter.close();
+        }catch (Exception e){
+            Toast.makeText(context, "Pogreska kod unosa pobjednika", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        return uspjeh;
     }
 
-    public void provjeraPobjede(int granica){
-        int ukupnoMi  = ukupniBodovi().getInt("mi", 0), ukupnoVi = ukupniBodovi().getInt("vi", 0);
+    public int provjeraPobjede(int granica, int partija){
+        int ukupnoMi  = ukupniBodovi(partija).getInt("mi", 0), ukupnoVi = ukupniBodovi(partija).getInt("vi", 0);
         if(ukupnoMi >= granica || ukupnoVi >= granica){
-            Toast.makeText(context, "Pobjedio je netko", Toast.LENGTH_SHORT).show(); // samo za testiranje
+             if (ukupnoMi > ukupnoVi){
+                 pobjeda(partija, 1);
+                 Toast.makeText(context, "Pobjedili su MI", Toast.LENGTH_SHORT).show();
+             }else if (ukupnoVi > ukupnoMi){
+                 pobjeda(partija, 2);
+                 Toast.makeText(context, "Pobjedili su VI", Toast.LENGTH_SHORT).show();
+             }
         }
 
-        //TODO implementirati provjeru ko je imao više ako oba imaju više od granice, upisati u bazu pobjednika, dodati novu partiju u tablicu partija
+        return dohvatiZadnjuPartiju();
     }
 
 }

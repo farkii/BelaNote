@@ -32,7 +32,7 @@ public class DataBaseAdapter {
     private static final String TABLICA_PARTIJA = "partija";
     private static final String ID_PARTIJA = "id_partija";
     static final String STVORI_TABLICU_PARTIJA = "create table " + TABLICA_PARTIJA + " (" + ID_PARTIJA + " integer primary key autoincrement, " +
-            BROJ_PARTIJE + " text not null);";
+            BROJ_PARTIJE + " integer not null);";
 
     private static final String TABLICA_POBJEDNIK_PARTIJE = "pobjednik_partije";
     private static final String ID_POBJEDNIK = "id_pobjednik";
@@ -169,12 +169,37 @@ public class DataBaseAdapter {
         return db.update(TABLICA_ZAPISI, vrijednosti, ID_ZAPIS + "=?", new String[]{Integer.toString(id)}) > 0;
     }
 
-    public Cursor dohvatiSveZapise(){
-        return db.rawQuery("SELECT * FROM " + TABLICA_ZAPISI, null);
+    public Cursor dohvatiSveZapise(int partija){
+        return db.rawQuery("SELECT * FROM " + TABLICA_ZAPISI + " WHERE " + FK_ID_PARTIJA + " = ?", new String[]{Integer.toString(partija)});
     }
 
 
     public void obrisiSveZapise(){
         return;
+    }
+
+    public Cursor dohvatiPartije(){
+        return db.rawQuery("SELECT * FROM " + TABLICA_PARTIJA, null);
+    }
+
+    public boolean insertPobjednik(int partija, int tim){
+        boolean uspjeh = false;
+
+        ContentValues vrijednosti = new ContentValues();
+        vrijednosti.put(FK_ID_PARTIJA_POBJEDNIK, partija);
+        vrijednosti.put(FK_ID_TIM_POBJEDNIK, tim);
+
+        if(novaPartija(partija)){
+            uspjeh = db.insert(TABLICA_POBJEDNIK_PARTIJE, null, vrijednosti) > 0;
+        }
+
+        return uspjeh;
+    }
+
+    private boolean novaPartija(int tekuca){
+        ContentValues vrijednosti = new ContentValues();
+        vrijednosti.put(BROJ_PARTIJE, tekuca+1);
+
+        return db.insert(TABLICA_PARTIJA, null, vrijednosti) > 0;
     }
 }

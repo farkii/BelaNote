@@ -29,6 +29,7 @@ public class DodajActivity extends AppCompatActivity{
     public Button btnDodaj;
     public MaterialButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnC, btnDel;
     private boolean pao = false;
+    public static int tekucaPartija;
 
     Polje oznacenoPolje;
 
@@ -92,6 +93,8 @@ public class DodajActivity extends AppCompatActivity{
 
         poslovni = PoslovniSloj.getInstance(this);
 
+        tekucaPartija = poslovni.dohvatiZadnjuPartiju();
+
         txtBodMi = this.findViewById(R.id.mi);
         txtBodMi.setOnClickListener(oznaceniBodovi);
 
@@ -109,8 +112,6 @@ public class DodajActivity extends AppCompatActivity{
 
         rgTim = this.findViewById(R.id.rg_zvao);
         rgAdut = this.findViewById(R.id.rg_adut);
-
-        partija = 1;
 
         btnDodaj = this.findViewById(R.id.btn_dodaj_2act);
 
@@ -145,7 +146,7 @@ public class DodajActivity extends AppCompatActivity{
                             Log.w(TAG, "Pogreska kod azuriranja podataka");
                         }
                     }else {
-                        if (!poslovni.unesiZapis(Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId())) + 1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId())) + 1, pao, partija)) {
+                        if (!poslovni.unesiZapis(Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId())) + 1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId())) + 1, pao, tekucaPartija)) {
                             Log.w(TAG, "Pogreska kod unosa podataka");
                         }
                     }
@@ -358,6 +359,6 @@ public class DodajActivity extends AppCompatActivity{
     }
 
     private Zapis stvoriZapisZaAzuriranje(){
-        return new Zapis(idZapis, Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), 1, rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId())) + 1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId())) + 1);
+        return new Zapis(idZapis, Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), tekucaPartija, rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId())) + 1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId())) + 1);
     }
 }

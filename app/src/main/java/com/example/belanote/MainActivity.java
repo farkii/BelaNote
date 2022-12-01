@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static int granicaBodovi;
+    private static int partija;
 
     public RecyclerView recViewZapisi;
     public Button btnDodajZapis;

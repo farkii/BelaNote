@@ -106,6 +106,10 @@ public class PoslovniSloj {
         return ukupnoPodaci;
     }
 
+    private void pobjeda(){
+
+    }
+
     public void provjeraPobjede(int granica){
         int ukupnoMi  = ukupniBodovi().getInt("mi", 0), ukupnoVi = ukupniBodovi().getInt("vi", 0);
         if(ukupnoMi >= granica || ukupnoVi >= granica){

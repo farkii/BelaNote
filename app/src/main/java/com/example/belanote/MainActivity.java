@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private static int granicaBodovi;
     private static int tekucaPartija;
 
+    private static int partijaMi, partijaVi;
+
     public RecyclerView recViewZapisi;
     public Button btnDodajZapis;
     public TextView txtUkupnoMi, txtUkupnoVi;
@@ -73,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void azuriraj(){
         tekucaPartija = poslovni.provjeraPobjede(granicaBodovi, tekucaPartija);
+
+        Bundle rezultati = poslovni.dohvatiRezultatePartija();
+        partijaMi = rezultati.getInt("mi", 0);
+        partijaVi = rezultati.getInt("vi", 0);
 
         zapisi = poslovni.dohvatiSveZapise(tekucaPartija);
         ukupnoPodaci = poslovni.ukupniBodovi(tekucaPartija);

@@ -78,11 +78,39 @@
                 android:textSize="30sp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/rezultatFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ukupnoFooter"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/rezultat_partija_mi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="#B50000"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/rezultat_partija_vi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="#B50000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/btnDodajZapis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ukupnoFooter"
+            android:layout_below="@id/rezultatFooter"
             android:text="@string/dodaj_zapis" />
     </RelativeLayout>
 

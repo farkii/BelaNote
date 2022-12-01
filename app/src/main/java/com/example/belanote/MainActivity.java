@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static int granicaBodovi;
-    private static int partija;
+    private static int tekucaPartija;
 
     public RecyclerView recViewZapisi;
     public Button btnDodajZapis;
@@ -72,22 +72,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void azuriraj(){
-        zapisi = poslovni.dohvatiSveZapise();
-        ukupnoPodaci = poslovni.ukupniBodovi();
+        tekucaPartija = poslovni.provjeraPobjede(granicaBodovi, tekucaPartija);
+
+        zapisi = poslovni.dohvatiSveZapise(tekucaPartija);
+        ukupnoPodaci = poslovni.ukupniBodovi(tekucaPartija);
+
         int ukupnoMi = ukupnoPodaci.getInt("mi", 0);
         int ukupnoVi = ukupnoPodaci.getInt("vi", 0);
 
-        if(zapisi.toArray().length > 0) {
-            RedZapisaAdapter adapter = new RedZapisaAdapter(this, zapisi);
-            recViewZapisi.setAdapter(adapter);
-            recViewZapisi.setLayoutManager(new LinearLayoutManager(this));  // saznati kako se azuriraju podaci u rec viewu bez da se svaki put stvara novi
-        }
+
+        RedZapisaAdapter adapter = new RedZapisaAdapter(this, zapisi);
+        recViewZapisi.setAdapter(adapter);
+        recViewZapisi.setLayoutManager(new LinearLayoutManager(this));  // saznati kako se azuriraju podaci u rec viewu bez da se svaki put stvara novi
+
 
         txtUkupnoMi.setText(Integer.toString(ukupnoMi));
         txtUkupnoVi.setText(Integer.toString(ukupnoVi));
-
-        poslovni.provjeraPobjede(granicaBodovi);
-
 
     }
 }

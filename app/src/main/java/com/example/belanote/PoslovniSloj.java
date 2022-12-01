@@ -37,6 +37,34 @@ public class PoslovniSloj {
         return instance;
     }
 
+    public Bundle dohvatiRezultatePartija(){
+        Bundle rezultati = new Bundle();
+        int mi = 0, vi = 0;
+        try {
+            dbAdapter.open();
+            Cursor cursor = dbAdapter.dohvatiPobjede();
+            if (cursor.moveToFirst()) {
+                do {
+                    if(cursor.getInt(2) == 1){
+                        mi++;
+                    }else if (cursor.getInt(2) == 2){
+                        vi++;
+                    }
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            dbAdapter.close();
+        }catch (Exception e){
+            Toast.makeText(context, "Pogreska kod dohvacanja zapisa", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
+        rezultati.putInt("mi", mi);
+        rezultati.putInt("vi", vi);
+
+        return rezultati;
+    }
+
     public ArrayList<Zapis> dohvatiSveZapise(int partija){
         ArrayList<Zapis> listaZapisa = new ArrayList<Zapis>();
 

@@ -182,6 +182,10 @@ public class DataBaseAdapter {
         return db.rawQuery("SELECT * FROM " + TABLICA_PARTIJA, null);
     }
 
+    public Cursor dohvatiPobjede(){
+        return db.rawQuery("SELECT * FROM " + TABLICA_POBJEDNIK_PARTIJE, null);
+    }
+
     public boolean insertPobjednik(int partija, int tim){
         boolean uspjeh = false;
 

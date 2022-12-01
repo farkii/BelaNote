@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public RecyclerView recViewZapisi;
     public Button btnDodajZapis;
-    public TextView txtUkupnoMi, txtUkupnoVi;
+    public TextView txtUkupnoMi, txtUkupnoVi, txtPartijaMi, txtPartijaVi;
     public ArrayList<Zapis> zapisi;
     public Bundle ukupnoPodaci;
     PoslovniSloj poslovni;
@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         txtUkupnoMi = this.findViewById(R.id.ukupno_mi_a1);
         txtUkupnoVi = this.findViewById(R.id.ukupno_vi_a1);
+        txtPartijaMi = this.findViewById(R.id.partija_mi);
+        txtPartijaVi = this.findViewById(R.id.partija_vi);
 
         recViewZapisi = this.findViewById(R.id.recViewRezultati);
         btnDodajZapis = this.findViewById(R.id.btnDodajZapis);
@@ -94,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
         txtUkupnoMi.setText(Integer.toString(ukupnoMi));
         txtUkupnoVi.setText(Integer.toString(ukupnoVi));
+        txtPartijaMi.setText(Integer.toString(partijaMi));
+        txtPartijaVi.setText(Integer.toString(partijaVi));
 
     }
 }

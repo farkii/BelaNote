@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/dark_grey"
     tools:context=".MainActivity"
     tools:ignore="ExtraText">
 
@@ -45,14 +45,17 @@
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+
+        android:layout_above="@id/bottomNavBar"
         android:background="#ffffff">
 
         <LinearLayout
+            android:background="@color/light_grey"
             android:id="@+id/ukupnoFooter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+
             android:orientation="horizontal">
 
             <TextView
@@ -108,5 +111,14 @@
             android:text="@string/dodaj_zapis" />
     </RelativeLayout>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavBar"
+        app:labelVisibilityMode="unlabeled"
+        android:layout_width="match_parent"
+        android:background="@color/dark_green"
+
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navigation_menu"/>
 
 </RelativeLayout>

@@ -21,6 +21,7 @@
         app:labelVisibilityMode="unlabeled"
         android:layout_width="match_parent"
         android:background="@color/dark_green"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
 
         android:layout_height="35dp"
         android:layout_alignParentBottom="true"

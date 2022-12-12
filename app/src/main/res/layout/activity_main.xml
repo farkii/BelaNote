@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
 
         android:layout_above="@id/bottomNavBar"
-        android:background="#ffffff">
+        android:background="@color/dark_grey">
 
         <LinearLayout
             android:background="@color/light_grey"

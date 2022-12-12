@@ -4,18 +4,18 @@
         android:id="@+id/pageHome"
         android:enabled="true"
         android:icon="@drawable/home_not_active"
-        android:title="."
+        android:title="@string/home"
         />
     <item
         android:id="@+id/pageStatistics"
         android:enabled="true"
-        android:icon="@drawable/settings_not_active"
-        android:title="."
+        android:icon="@drawable/stats_not_active"
+        android:title="@string/statistics"
         />
     <item
         android:id="@+id/pageSettings"
         android:enabled="true"
-        android:icon="@drawable/stats_not_active"
-        android:title="."
+        android:icon="@drawable/settings_not_active"
+        android:title="@string/settings"
         />
 </menu>

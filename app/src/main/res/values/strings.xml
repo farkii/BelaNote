@@ -3,4 +3,7 @@
     <string name="dodaj_zapis">Dodaj zapis</string>
     <string name="mi">Mi</string>
     <string name="vi">Vi</string>
+    <string name="home">Home</string>
+    <string name="statistics">Statistics</string>
+    <string name="settings">Settings</string>
 </resources>

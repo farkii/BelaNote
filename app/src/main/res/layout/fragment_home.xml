@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/dark_grey"
     tools:context=".HomeFragment">
 
@@ -42,6 +43,21 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/footer"
         android:layout_below="@id/miViHeader"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnDodajZapis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/footer"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/dark_green"
+        app:backgroundTint="@color/dark_green"
+        app:srcCompat="@drawable/add_icon"
+        app:tint="@color/eggwhite"
+
+        />
 
     <RelativeLayout
         android:id="@+id/footer"
@@ -103,13 +119,6 @@
                 android:textColor="@color/bloody_red"
                 android:textSize="20sp" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btnDodajZapis"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ukupnoFooter"
-            android:text="@string/dodaj_zapis" />
     </RelativeLayout>
 
 </RelativeLayout>

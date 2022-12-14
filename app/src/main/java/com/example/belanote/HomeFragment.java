@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 /**
@@ -33,7 +35,7 @@ public class HomeFragment extends Fragment {
     private static int partijaMi, partijaVi;
 
     public RecyclerView recViewZapisi;
-    public Button btnDodajZapis;
+    public FloatingActionButton btnDodajZapis;
     public TextView txtUkupnoMi, txtUkupnoVi, txtPartijaMi, txtPartijaVi;
     public ArrayList<Zapis> zapisi;
     public Bundle ukupnoPodaci;

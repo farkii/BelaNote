@@ -175,7 +175,9 @@ public class DataBaseAdapter {
 
 
     public void obrisiSveZapise(){
-        return;
+        db.delete(TABLICA_ZAPISI,null,null);
+        db.delete(TABLICA_POBJEDNIK_PARTIJE,null,null);
+        db.delete(TABLICA_PARTIJA, ID_PARTIJA + ">1", null);
     }
 
     public Cursor dohvatiPartije(){

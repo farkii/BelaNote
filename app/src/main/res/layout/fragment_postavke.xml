@@ -32,25 +32,28 @@
             android:layout_marginTop="40dp"
             android:orientation="vertical">
             <Button
+                android:id="@+id/btnPostavke"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
                 android:paddingVertical="15dp"
-                android:text="Postavke igre"/>
+                android:text="@string/postavke_igre"/>
 
             <Button
+                android:id="@+id/btnObrisiPodatke"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="15dp"
                 android:paddingVertical="15dp"
-                android:text="Obrisi podatke igre"/>
+                android:text="@string/obrisi_podatke_igre"/>
 
             <Button
+                android:id="@+id/btnRecenzija"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="15dp"
                 android:paddingVertical="15dp"
-                android:text="Ostavi recenziju"/>
+                android:text="@string/ostavi_recenziju"/>
     </LinearLayout>
 
     </LinearLayout>

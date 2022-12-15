@@ -1,12 +1,18 @@
 package com.example.belanote;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,7 +21,9 @@ import android.view.ViewGroup;
  */
 public class PostavkeFragment extends Fragment {
 
-    
+    private Button btnPostavke, btnObrisi, btnRecenzija;
+
+    PoslovniSloj poslovni;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,6 +63,8 @@ public class PostavkeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        poslovni = PoslovniSloj.getInstance(getActivity());
     }
 
     @Override
@@ -62,5 +72,53 @@ public class PostavkeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_postavke, container, false);
+    }
+
+    // Skocni DaNe prozor -> https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    poslovni.obrisiSveZapise();
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    break;
+            }
+        }
+    };
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        btnPostavke = view.findViewById(R.id.btnPostavke);
+        btnObrisi = view.findViewById(R.id.btnObrisiPodatke);
+        btnRecenzija = view.findViewById(R.id.btnRecenzija);
+
+        btnPostavke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                return;
+            }
+        });
+
+        btnObrisi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage("Jeste li sigurni?").setPositiveButton("Da", dialogClickListener)
+                        .setNegativeButton("Ne", dialogClickListener).show();
+            }
+        });
+
+        btnRecenzija.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                return;  //TODO Otvara se trg play gdje korisnik moze ostaviti recenziju
+            }
+        });
     }
 }

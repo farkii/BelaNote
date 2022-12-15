@@ -113,6 +113,21 @@ public class PoslovniSloj {
         return uspjeh;
     }
 
+    public boolean obrisiSveZapise(){
+        boolean uspjeh = false;
+        try{
+            dbAdapter.open();
+            dbAdapter.obrisiSveZapise();
+            dbAdapter.close();
+            Toast.makeText(context, "Podaci su uspjesno obrisani", Toast.LENGTH_SHORT).show();
+            uspjeh = true;
+        }catch (Exception e){
+            Toast.makeText(context, "Pogreska kod brisanja zapisa", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        return uspjeh;
+    }
+
     public int dohvatiZadnjuPartiju(){
         int partija = -1;
 

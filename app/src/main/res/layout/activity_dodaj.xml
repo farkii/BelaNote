@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_grey"
     tools:context=".DodajActivity">
     <RelativeLayout
+        android:id="@+id/relSviBodovi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/relSviBodovi"
         android:layout_marginBottom="20dp">
         <LinearLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/header">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
@@ -25,28 +26,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:text="Mi"
                 android:textAlignment="center"
-                android:textSize="20dp"
-                android:text="Mi"/>
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:text="Vi"
                 android:textAlignment="center"
-                android:textSize="20dp"
-                android:text="Vi"/>
+                android:textSize="20dp"/>
 
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/bodovi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_below="@id/header"
-            android:id="@+id/bodovi">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
@@ -55,31 +56,31 @@
                 android:text="Bodovi:"/>
 
             <TextView
+                android:id="@+id/mi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/mi"/>
+                android:textSize="30sp"/>
 
             <TextView
+                android:id="@+id/vi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/vi"/>
+                android:textSize="30sp"/>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/zvanja"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_below="@id/bodovi"
-            android:id="@+id/zvanja">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
@@ -88,31 +89,31 @@
                 android:text="Zvanja:"/>
 
             <TextView
+                android:id="@+id/zvanja_mi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/zvanja_mi"/>
+                android:textSize="30sp"/>
 
             <TextView
+                android:id="@+id/zvanja_vi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/zvanja_vi"/>
+                android:textSize="30sp"/>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ukupno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_below="@id/zvanja"
-            android:id="@+id/ukupno">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
@@ -121,32 +122,32 @@
                 android:text="Ukupno:"/>
 
             <TextView
+                android:id="@+id/ukupno_mi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/ukupno_mi"/>
+                android:textSize="30sp"/>
 
             <TextView
+                android:id="@+id/ukupno_vi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/ukupno_vi"/>
+                android:textSize="30sp"/>
         </LinearLayout>
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/zvao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_below="@id/relSviBodovi"
-        android:id="@+id/zvao">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
@@ -155,11 +156,11 @@
             android:text="Zvao:"/>
 
         <RadioGroup
+            android:id="@+id/rg_zvao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_weight="1"
-            android:id="@+id/rg_zvao">
+            android:orientation="horizontal">
 
             <RadioButton
                 android:layout_width="match_parent"
@@ -178,12 +179,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/adut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_below="@id/zvao"
-        android:id="@+id/adut">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
@@ -192,11 +193,11 @@
             android:text="Adut:"/>
 
         <RadioGroup
+            android:id="@+id/rg_adut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_weight="1"
-            android:id="@+id/rg_adut">
+            android:orientation="horizontal">
 
             <RadioButton
                 android:layout_width="match_parent"
@@ -229,138 +230,288 @@
         android:id="@+id/brojevi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/adut">
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/numpad_dodaj_activity_bg"
+        android:elevation="7dp"
+        android:paddingTop="20dp"
+        android:layout_alignParentBottom="true">
+
         <LinearLayout
+            android:id="@+id/prvi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/prvi">
+            android:layout_marginVertical="5dp">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="1"/>
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="1"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="2"/>
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="2"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"
+                app:cornerRadius="50dp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="3"/>
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="3"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"
+                app:cornerRadius="50dp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
+
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/drugi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/prvi"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/drugi"
-            android:layout_below="@+id/prvi">
+            android:layout_marginVertical="5dp">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="4"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="4"
+                android:textColor="@color/eggwhite"
+
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="5"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="5"
+                android:textColor="@color/eggwhite"
+
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="6"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="6"
+                android:textColor="@color/eggwhite"
+
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/treci"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/drugi"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/treci"
-            android:layout_below="@id/drugi">
+            android:layout_marginVertical="5dp">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="7"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="7"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="8"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="8"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="9"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="9"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/cetvrti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/treci"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/cetvrti"
-            android:layout_below="@id/treci">
+            android:layout_marginVertical="5dp">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="C"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="C"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="0"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="0"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="DEL"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="DEL"
+                android:textColor="@color/eggwhite"
+
+                android:textSize="15sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
         </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_dodaj_2act"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cetvrti"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Dodaj zapis"/>
     </RelativeLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/brojevi"
-        android:layout_centerHorizontal="true"
-        android:text="Dodaj zapis"
-        android:id="@+id/btn_dodaj_2act"/>
+
 
 </RelativeLayout>

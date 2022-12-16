@@ -36,7 +36,7 @@ public class HomeFragment extends Fragment {
 
     public RecyclerView recViewZapisi;
     public FloatingActionButton btnDodajZapis;
-    public TextView txtUkupnoMi, txtUkupnoVi, txtPartijaMi, txtPartijaVi;
+    public TextView txtUkupnoMi, txtUkupnoVi, txtPartijaMi, txtPartijaVi, txtGranica;
     public ArrayList<Zapis> zapisi;
     public Bundle ukupnoPodaci;
     PoslovniSloj poslovni;
@@ -107,6 +107,7 @@ public class HomeFragment extends Fragment {
         txtUkupnoVi = view.findViewById(R.id.ukupno_vi_a1);
         txtPartijaMi = view.findViewById(R.id.partija_mi);
         txtPartijaVi = view.findViewById(R.id.partija_vi);
+        txtGranica = view.findViewById(R.id.txtGranica);
 
         recViewZapisi = view.findViewById(R.id.recViewRezultati);
         btnDodajZapis = view.findViewById(R.id.btnDodajZapis);
@@ -126,6 +127,7 @@ public class HomeFragment extends Fragment {
 
         Postavke postavke = new Postavke(getActivity());
         granicaBodovi = postavke.dohvatiGranicu();
+        txtGranica.setText(Integer.toString(granicaBodovi));
         azuriraj();
     }
 

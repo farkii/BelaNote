@@ -2,6 +2,7 @@ package com.example.belanote;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 public class PostavkeFragment extends Fragment {
 
     private Button btnPostavke, btnObrisi, btnRecenzija;
+
+    Postavke postavke;
 
     private AlertDialog.Builder granicaDialogBuilder;
     private AlertDialog granicaDialog;
@@ -72,6 +75,7 @@ public class PostavkeFragment extends Fragment {
         }
 
         poslovni = PoslovniSloj.getInstance(getActivity());
+        postavke = new Postavke(getActivity());
     }
 
     @Override
@@ -140,6 +144,9 @@ public class PostavkeFragment extends Fragment {
         granicaDialogBuilder.setView(granicaPopupView);
         granicaDialog = granicaDialogBuilder.create();
         granicaDialog.show();
+        granicaDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        txtGranica.setText(Integer.toString(postavke.dohvatiGranicu()));
 
         btnOdustani.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +159,6 @@ public class PostavkeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(provjeraGranice(txtGranica.getText().toString())){
-                    Postavke postavke = new Postavke(getActivity());
                     postavke.dodajGranicu(Integer.parseInt(txtGranica.getText().toString()));
                     granicaDialog.dismiss();
                     Toast.makeText(getActivity(), "Granica je promjenjena na " + txtGranica.getText().toString(), Toast.LENGTH_SHORT).show();

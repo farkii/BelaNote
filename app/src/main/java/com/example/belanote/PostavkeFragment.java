@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +24,11 @@ import android.widget.Button;
 public class PostavkeFragment extends Fragment {
 
     private Button btnPostavke, btnObrisi, btnRecenzija;
+
+    private AlertDialog.Builder granicaDialogBuilder;
+    private AlertDialog granicaDialog;
+    private EditText txtGranica;
+    private Button btnSpremi, btnOdustani;
 
     PoslovniSloj poslovni;
 
@@ -101,7 +108,7 @@ public class PostavkeFragment extends Fragment {
         btnPostavke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                return;
+                stvoriGranicaDialog();
             }
         });
 
@@ -120,5 +127,53 @@ public class PostavkeFragment extends Fragment {
                 return;  //TODO Otvara se trg play gdje korisnik moze ostaviti recenziju
             }
         });
+    }
+
+    private void stvoriGranicaDialog(){
+        granicaDialogBuilder = new AlertDialog.Builder(getActivity());
+        final View granicaPopupView = getLayoutInflater().inflate(R.layout.granica_popup, null);
+
+        txtGranica = granicaPopupView.findViewById(R.id.txtGranicaPopup);
+        btnSpremi = granicaPopupView.findViewById(R.id.btnSpremi);
+        btnOdustani = granicaPopupView.findViewById(R.id.btnOdustani);
+
+        granicaDialogBuilder.setView(granicaPopupView);
+        granicaDialog = granicaDialogBuilder.create();
+        granicaDialog.show();
+
+        btnOdustani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                granicaDialog.dismiss();
+            }
+        });
+
+        btnSpremi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(provjeraGranice(txtGranica.getText().toString())){
+                    Postavke postavke = new Postavke(getActivity());
+                    postavke.dodajGranicu(Integer.parseInt(txtGranica.getText().toString()));
+                    granicaDialog.dismiss();
+                    Toast.makeText(getActivity(), "Granica je promjenjena na " + txtGranica.getText().toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    private boolean provjeraGranice(String granica){
+        boolean uspjeh = false;
+        int broj = Integer.parseInt(granica);
+        if(broj < 161){
+            Toast.makeText(getActivity(), "Granica ne može biti manja od 161", Toast.LENGTH_SHORT).show();
+        }else if (broj > 9999){
+            Toast.makeText(getActivity(), "Granice ne može biti veća od 9999", Toast.LENGTH_SHORT).show();
+        }
+
+        if(broj >= 161 && broj <= 9999){
+            uspjeh = true;
+        }
+        return uspjeh;
     }
 }

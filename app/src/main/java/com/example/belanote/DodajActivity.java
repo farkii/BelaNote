@@ -25,10 +25,14 @@ public class DodajActivity extends AppCompatActivity{
     private int idZapis; //alocira se s postojecim podacima kod azuriranja postojeceg zapisa u metodi onStart()
 
     public TextView txtBodMi, txtBodVi, txtZvanjaMi, txtZvanjaVi,txtUkupnoMi, txtUkupnoVi, txtMi, txtVi;
+
     public Button btnDodaj;
     public MaterialButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnC, btnDel, btnOdustani;
+
     private boolean pao = false;
+
     public static int tekucaPartija;
+
     public LinearLayout tref, karo, herc, pik, mi, vi;
 
     public Boja oznacenaBoja;
@@ -279,31 +283,31 @@ public class DodajActivity extends AppCompatActivity{
     private void promjenaBoja(int i){
         switch(i){
             case 1:{
-                txtBodMi.setBackgroundColor(Color.parseColor("#288039"));
-                txtBodVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                txtBodMi.setBackgroundResource(R.drawable.bodovi_aktivno_bg);
+                txtBodVi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaVi.setBackgroundResource(R.drawable.bodovi_bg);
                 break;
             }
             case 2:{
-                txtBodMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtBodVi.setBackgroundColor(Color.parseColor("#288039"));
-                txtZvanjaMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                txtBodMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtBodVi.setBackgroundResource(R.drawable.bodovi_aktivno_bg);
+                txtZvanjaMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaVi.setBackgroundResource(R.drawable.bodovi_bg);
                 break;
             }
             case 3:{
-                txtBodMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtBodVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaMi.setBackgroundColor(Color.parseColor("#288039"));
-                txtZvanjaVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                txtBodMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtBodVi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaMi.setBackgroundResource(R.drawable.bodovi_aktivno_bg);
+                txtZvanjaVi.setBackgroundResource(R.drawable.bodovi_bg);
                 break;
             }
             case 4:{
-                txtBodMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtBodVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaVi.setBackgroundColor(Color.parseColor("#288039"));
+                txtBodMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtBodVi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaVi.setBackgroundResource(R.drawable.bodovi_aktivno_bg);
                 break;
             }
         }
@@ -313,16 +317,12 @@ public class DodajActivity extends AppCompatActivity{
         switch(i){
             case 1:{
                 mi.setBackgroundResource(R.drawable.ikona_aktivno_bg);
-                txtMi.setTextColor(getResources().getColor(R.color.eggwhite));
                 vi.setBackgroundResource(R.drawable.ikona_bg);
-                txtVi.setTextColor(getResources().getColor(R.color.dark_green));
                 break;
             }
             case 2:{
                 mi.setBackgroundResource(R.drawable.ikona_bg);
-                txtMi.setTextColor(getResources().getColor(R.color.dark_green));
                 vi.setBackgroundResource(R.drawable.ikona_aktivno_bg);
-                txtVi.setTextColor(getResources().getColor(R.color.eggwhite));
                 break;
             }
         }
@@ -407,6 +407,7 @@ public class DodajActivity extends AppCompatActivity{
             }
         }
     }
+
     private void oduzimanjeOznacenomPolju(){
         switch (oznacenoPolje){
             case bodMi:{

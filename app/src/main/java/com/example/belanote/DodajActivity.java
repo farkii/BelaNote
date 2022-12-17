@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,17 +24,69 @@ public class DodajActivity extends AppCompatActivity{
 
     private int idZapis; //alocira se s postojecim podacima kod azuriranja postojeceg zapisa u metodi onStart()
 
-    public TextView txtBodMi, txtBodVi, txtZvanjaMi, txtZvanjaVi,txtUkupnoMi, txtUkupnoVi;
-    public RadioGroup rgTim, rgAdut;
-    public int partija;
+    public TextView txtBodMi, txtBodVi, txtZvanjaMi, txtZvanjaVi,txtUkupnoMi, txtUkupnoVi, txtMi, txtVi;
+
     public Button btnDodaj;
-    public MaterialButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnC, btnDel;
+    public MaterialButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnC, btnDel, btnOdustani;
+
     private boolean pao = false;
+
     public static int tekucaPartija;
+
+    public LinearLayout tref, karo, herc, pik, mi, vi;
+
+    public Boja oznacenaBoja;
+    public Tim oznaceniTim;
 
     Polje oznacenoPolje;
 
     PoslovniSloj poslovni;
+
+    View.OnClickListener oznaceniAdut = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch(view.getId()){
+                case R.id.tref:{
+                    oznacenaBoja = Boja.TREF;
+                    promjenaBojaAdut(oznacenaBoja.ordinal()+1);
+                    break;
+                }
+                case R.id.karo:{
+                    oznacenaBoja = Boja.KARO;
+                    promjenaBojaAdut(oznacenaBoja.ordinal()+1);
+                    break;
+                }
+                case R.id.herc:{
+                    oznacenaBoja = Boja.HERC;
+                    promjenaBojaAdut(oznacenaBoja.ordinal()+1);
+                    break;
+                }
+                case R.id.pik:{
+                    oznacenaBoja = Boja.PIK;
+                    promjenaBojaAdut(oznacenaBoja.ordinal()+1);
+                    break;
+                }
+            }
+        }
+    };
+
+    View.OnClickListener oznaceniTimZvao = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch(view.getId()){
+                case R.id.mi_zvao:{
+                    oznaceniTim = Tim.MI;
+                    promjenaBojaTim(oznaceniTim.ordinal()+1);
+                    break;
+                }
+                case R.id.vi_zvao:{
+                    oznaceniTim = Tim.VI;
+                    promjenaBojaTim(oznaceniTim.ordinal()+1);
+                    break;
+                }
+            }
+        }
+    };
 
     View.OnClickListener oznaceniBodovi = new View.OnClickListener() {
         @Override
@@ -110,10 +163,26 @@ public class DodajActivity extends AppCompatActivity{
         txtUkupnoMi = this.findViewById(R.id.ukupno_mi);
         txtUkupnoVi = this.findViewById(R.id.ukupno_vi);
 
-        rgTim = this.findViewById(R.id.rg_zvao);
-        rgAdut = this.findViewById(R.id.rg_adut);
+        tref = this.findViewById(R.id.tref);
+        herc = this.findViewById(R.id.herc);
+        karo = this.findViewById(R.id.karo);
+        pik = this.findViewById(R.id.pik);
+
+        tref.setOnClickListener(oznaceniAdut);
+        herc.setOnClickListener(oznaceniAdut);
+        karo.setOnClickListener(oznaceniAdut);
+        pik.setOnClickListener(oznaceniAdut);
+
+        mi = this.findViewById(R.id.mi_zvao);
+        vi = this.findViewById(R.id.vi_zvao);
+        txtMi = this.findViewById(R.id.txt_mi);
+        txtVi = this.findViewById(R.id.txt_vi);
+
+        mi.setOnClickListener(oznaceniTimZvao);
+        vi.setOnClickListener(oznaceniTimZvao);
 
         btnDodaj = this.findViewById(R.id.btn_dodaj_2act);
+        btnOdustani = this.findViewById(R.id.btn_odustani_2act);
 
         inicijalizirajGumb(btn0, R.id.btn0);
         inicijalizirajGumb(btn1, R.id.btn1);
@@ -146,12 +215,19 @@ public class DodajActivity extends AppCompatActivity{
                             Log.w(TAG, "Pogreska kod azuriranja podataka");
                         }
                     }else {
-                        if (!poslovni.unesiZapis(Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId())) + 1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId())) + 1, pao, tekucaPartija)) {
+                        if (!poslovni.unesiZapis(Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), oznacenaBoja.ordinal()+1, oznaceniTim.ordinal()+1, pao, tekucaPartija)) {
                             Log.w(TAG, "Pogreska kod unosa podataka");
                         }
                     }
                     finish();
                 }
+            }
+        });
+
+        btnOdustani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
@@ -172,14 +248,13 @@ public class DodajActivity extends AppCompatActivity{
             txtZvanjaMi.setText(Integer.toString(updatePodaci.getInt("zvanjaMi")));
             txtZvanjaVi.setText(Integer.toString(updatePodaci.getInt("zvanjaVi")));
 
-            String tekst = Integer.toString(updatePodaci.getInt("zvanjaVi"));
+            oznaceniTim = Tim.values()[updatePodaci.getInt("zvao")-1];
+            promjenaBojaTim(oznaceniTim.ordinal()+1);
 
-            rgTim.check(rgTim.getChildAt(updatePodaci.getInt("zvao")-1).getId());
-            rgAdut.check(rgAdut.getChildAt(updatePodaci.getInt("adut")-1).getId());
+            oznacenaBoja = Boja.values()[updatePodaci.getInt("adut")-1];
+            promjenaBojaAdut(oznacenaBoja.ordinal()+1);
 
             racunanjeUkupnihBodova();
-
-
         }
     }
 
@@ -188,15 +263,11 @@ public class DodajActivity extends AppCompatActivity{
         int bodMi = Integer.parseInt(txtBodMi.getText().toString()), bodVi = Integer.parseInt(txtBodVi.getText().toString());
 
         if(bodMi+bodVi != 162){
-            Toast.makeText(this, "Suma bodova bez zvanja mora iznositi tocno 162", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Suma bodova bez zvanja mora iznositi točno 162", Toast.LENGTH_SHORT).show();
             uspjeh = false;
         }
 
-        if(rgTim.getCheckedRadioButtonId() == -1){
-            Toast.makeText(this, "Potrebno je izabrati koji tim koji je zvao", Toast.LENGTH_SHORT).show();
-            uspjeh = false;
-        }
-        if(rgAdut.getCheckedRadioButtonId() == -1){
+        if(oznacenaBoja == null){
             Toast.makeText(this, "Potrebno je izabrati adut", Toast.LENGTH_SHORT).show();
             uspjeh = false;
         }
@@ -212,31 +283,79 @@ public class DodajActivity extends AppCompatActivity{
     private void promjenaBoja(int i){
         switch(i){
             case 1:{
-                txtBodMi.setBackgroundColor(Color.parseColor("#288039"));
-                txtBodVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                txtBodMi.setBackgroundResource(R.drawable.bodovi_aktivno_bg);
+                txtBodVi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaVi.setBackgroundResource(R.drawable.bodovi_bg);
                 break;
             }
             case 2:{
-                txtBodMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtBodVi.setBackgroundColor(Color.parseColor("#288039"));
-                txtZvanjaMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                txtBodMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtBodVi.setBackgroundResource(R.drawable.bodovi_aktivno_bg);
+                txtZvanjaMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaVi.setBackgroundResource(R.drawable.bodovi_bg);
                 break;
             }
             case 3:{
-                txtBodMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtBodVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaMi.setBackgroundColor(Color.parseColor("#288039"));
-                txtZvanjaVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                txtBodMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtBodVi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaMi.setBackgroundResource(R.drawable.bodovi_aktivno_bg);
+                txtZvanjaVi.setBackgroundResource(R.drawable.bodovi_bg);
                 break;
             }
             case 4:{
-                txtBodMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtBodVi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaMi.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                txtZvanjaVi.setBackgroundColor(Color.parseColor("#288039"));
+                txtBodMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtBodVi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaMi.setBackgroundResource(R.drawable.bodovi_bg);
+                txtZvanjaVi.setBackgroundResource(R.drawable.bodovi_aktivno_bg);
+                break;
+            }
+        }
+    }
+
+    private void promjenaBojaTim(int i){
+        switch(i){
+            case 1:{
+                mi.setBackgroundResource(R.drawable.ikona_aktivno_bg);
+                vi.setBackgroundResource(R.drawable.ikona_bg);
+                break;
+            }
+            case 2:{
+                mi.setBackgroundResource(R.drawable.ikona_bg);
+                vi.setBackgroundResource(R.drawable.ikona_aktivno_bg);
+                break;
+            }
+        }
+    }
+
+    private void promjenaBojaAdut(int i) {
+        switch (i) {
+            case 1: {
+                tref.setBackgroundResource(R.drawable.ikona_aktivno_bg);
+                karo.setBackgroundResource(R.drawable.ikona_bg);
+                herc.setBackgroundResource(R.drawable.ikona_bg);
+                pik.setBackgroundResource(R.drawable.ikona_bg);
+                break;
+            }
+            case 2: {
+                tref.setBackgroundResource(R.drawable.ikona_bg);
+                karo.setBackgroundResource(R.drawable.ikona_bg);
+                herc.setBackgroundResource(R.drawable.ikona_bg);
+                pik.setBackgroundResource(R.drawable.ikona_aktivno_bg);
+                break;
+            }
+            case 3: {
+                tref.setBackgroundResource(R.drawable.ikona_bg);
+                karo.setBackgroundResource(R.drawable.ikona_bg);
+                herc.setBackgroundResource(R.drawable.ikona_aktivno_bg);
+                pik.setBackgroundResource(R.drawable.ikona_bg);
+                break;
+            }
+            case 4: {
+                tref.setBackgroundResource(R.drawable.ikona_bg);
+                karo.setBackgroundResource(R.drawable.ikona_aktivno_bg);
+                herc.setBackgroundResource(R.drawable.ikona_bg);
+                pik.setBackgroundResource(R.drawable.ikona_bg);
                 break;
             }
         }
@@ -288,6 +407,7 @@ public class DodajActivity extends AppCompatActivity{
             }
         }
     }
+
     private void oduzimanjeOznacenomPolju(){
         switch (oznacenoPolje){
             case bodMi:{
@@ -359,6 +479,6 @@ public class DodajActivity extends AppCompatActivity{
     }
 
     private Zapis stvoriZapisZaAzuriranje(){
-        return new Zapis(idZapis, Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), tekucaPartija, rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId())) + 1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId())) + 1);
+        return new Zapis(idZapis, Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), tekucaPartija, oznacenaBoja.ordinal()+1, oznaceniTim.ordinal()+1);
     }
 }

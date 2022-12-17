@@ -4,363 +4,685 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_grey"
     tools:context=".DodajActivity">
+
     <RelativeLayout
+        android:id="@+id/relSviBodovi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/relSviBodovi"
-        android:layout_marginBottom="20dp">
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/numpad_dodaj_activity_bg">
+
         <LinearLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/header">
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4">
+            </Space>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="3"
+                android:text="Mi"
                 android:textAlignment="center"
-                android:textSize="20dp"
-                android:text="Mi"/>
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="3"
+                android:text="Vi"
                 android:textAlignment="center"
-                android:textSize="20dp"
-                android:text="Vi"/>
-
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/bodovi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_below="@id/header"
-            android:id="@+id/bodovi">
+            android:layout_marginVertical="3dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="4"
+                android:text="@string/bodovi"
+                android:textAlignment="center"
+                android:textColor="@color/eggwhite"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/mi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
                 android:layout_weight="3"
-                android:text="Bodovi:"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:background="@drawable/bodovi_bg"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/mi"/>
+                android:textColor="@color/dark_green"
+                android:textSize="30sp"/>
 
             <TextView
+                android:id="@+id/vi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="3"
+                android:background="@drawable/bodovi_bg"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/vi"/>
+                android:textColor="@color/dark_green"
+                android:textSize="30sp"/>
+
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/zvanja"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_below="@id/bodovi"
-            android:id="@+id/zvanja">
+            android:layout_marginVertical="3dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="4"
+                android:text="@string/zvanja"
+                android:textAlignment="center"
+                android:textColor="@color/eggwhite"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/zvanja_mi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
                 android:layout_weight="3"
-                android:text="Zvanja:"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:background="@drawable/bodovi_bg"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/zvanja_mi"/>
+                android:textColor="@color/dark_green"
+                android:textSize="30sp"/>
 
             <TextView
+                android:id="@+id/zvanja_vi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="3"
+                android:background="@drawable/bodovi_bg"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/zvanja_vi"/>
+                android:textColor="@color/dark_green"
+                android:textSize="30sp"/>
+
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ukupno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_below="@id/zvanja"
-            android:id="@+id/ukupno">
+            android:layout_marginVertical="3dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="4"
+                android:text="@string/ukupno"
+                android:textAlignment="center"
+                android:textColor="@color/eggwhite"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/ukupno_mi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
                 android:layout_weight="3"
-                android:text="Ukupno:"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:background="@drawable/bodovi_ukupno_bg"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/ukupno_mi"/>
+                android:textColor="@color/eggwhite"
+                android:textSize="30sp"/>
+
+
 
             <TextView
+                android:id="@+id/ukupno_vi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="3"
+                android:background="@drawable/bodovi_ukupno_bg"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:id="@+id/ukupno_vi"/>
+                android:textColor="@color/eggwhite"
+                android:textSize="30sp"/>
         </LinearLayout>
+
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/zvao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_below="@id/relSviBodovi"
-        android:id="@+id/zvao">
+        android:layout_marginHorizontal="90dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/aduti_odabir_bg"
+        android:elevation="7dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:text="Zvao:"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2" >
+        </Space>
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:id="@+id/rg_zvao">
+        <LinearLayout
+            android:id="@+id/mi_zvao"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ikona_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txt_mi"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:text="MI"
+                android:textAlignment="center"
+                android:textColor="@color/dark_green"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Mi"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2" >
+        </Space>
 
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Vi"/>
+        <LinearLayout
+            android:id="@+id/vi_zvao"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ikona_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txt_vi"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:text="VI"
+                android:textAlignment="center"
+                android:textColor="@color/dark_green"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2" >
+        </Space>
 
-        </RadioGroup>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/adut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_below="@id/zvao"
-        android:id="@+id/adut">
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/aduti_odabir_bg"
+        android:elevation="7dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:text="Adut:"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2" >
+        </Space>
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:id="@+id/rg_adut">
+        <LinearLayout
+            android:id="@+id/tref"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ikona_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/clubs"/>
+        </LinearLayout>
 
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Tref"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="3" >
+        </Space>
 
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Pik"/>
+        <LinearLayout
+            android:id="@+id/pik"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ikona_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/spades_icon"/>
+        </LinearLayout>
 
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Herc"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="3" >
+        </Space>
 
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Karo"/>
+        <LinearLayout
+            android:id="@+id/herc"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ikona_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/hearts_icon"/>
+        </LinearLayout>
 
-        </RadioGroup>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="3" >
+        </Space>
+
+        <LinearLayout
+            android:id="@+id/karo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ikona_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/diamond_icon"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2" >
+        </Space>
+
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/brojevi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/adut">
+        android:layout_below="@id/adut"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/numpad_dodaj_activity_bg"
+        android:elevation="7dp"
+        android:paddingTop="20dp">
+
         <LinearLayout
+            android:id="@+id/prvi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/prvi">
+            android:layout_marginVertical="3dp">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="1"/>
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="1"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="2"/>
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="2"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"
+                app:cornerRadius="50dp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="3"/>
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="3"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"
+                app:cornerRadius="50dp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
+
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/drugi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/prvi"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/drugi"
-            android:layout_below="@+id/prvi">
+            android:layout_marginVertical="3dp">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="4"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="4"
+                android:textColor="@color/eggwhite"
+
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="5"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="5"
+                android:textColor="@color/eggwhite"
+
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="6"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="6"
+                android:textColor="@color/eggwhite"
+
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/treci"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/drugi"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/treci"
-            android:layout_below="@id/drugi">
+            android:layout_marginVertical="3dp">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="7"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="7"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="8"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="8"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="9"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="9"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/cetvrti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/treci"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/cetvrti"
-            android:layout_below="@id/treci">
+            android:layout_marginVertical="3dp">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="C"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="C"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="0"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="0"
+                android:textColor="@color/eggwhite"
+                android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="DEL"/>
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/btn_broj_bg"
+                android:text="DEL"
+                android:textColor="@color/eggwhite"
+
+                android:textSize="15sp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" >
+            </Space>
         </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_dodaj_2act"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/light_green"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/ic_baseline_check_circle_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="30dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_odustani_2act"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/bloody_red"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/ic_baseline_cancel_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="30dp"/>
     </RelativeLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/brojevi"
-        android:layout_centerHorizontal="true"
-        android:text="Dodaj zapis"
-        android:id="@+id/btn_dodaj_2act"/>
+
 
 </RelativeLayout>

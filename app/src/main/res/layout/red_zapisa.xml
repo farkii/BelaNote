@@ -8,27 +8,77 @@
     android:layout_marginVertical="5dp"
     android:elevation="10dp">
 
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="2" >
+    </Space>
+
     <TextView
         android:id="@+id/bodoviMi"
-        android:layout_width="match_parent"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
-        android:layout_weight="1"
         android:text="123"
         android:textAlignment="center"
         android:textColor="@color/eggwhite"
-        android:textSize="25sp"
-        />
+        android:textSize="25sp" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="3" >
+    </Space>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:id="@+id/lijevo"
+        android:layout_marginEnd="10dp"/>
+
+    <LinearLayout
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ikona_bg"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/ikona"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/desno"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="3" >
+    </Space>
+
     <TextView
         android:id="@+id/bodoviVi"
-        android:layout_width="match_parent"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
-        android:layout_weight="1"
         android:text="56"
         android:textAlignment="center"
         android:textColor="@color/eggwhite"
         android:textSize="25sp"
         />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="2" >
+    </Space>
 
 </LinearLayout>

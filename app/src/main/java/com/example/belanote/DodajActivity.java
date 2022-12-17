@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,15 +26,58 @@ public class DodajActivity extends AppCompatActivity{
 
     public TextView txtBodMi, txtBodVi, txtZvanjaMi, txtZvanjaVi,txtUkupnoMi, txtUkupnoVi;
     public RadioGroup rgTim, rgAdut;
-    public int partija;
     public Button btnDodaj;
     public MaterialButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnC, btnDel;
     private boolean pao = false;
     public static int tekucaPartija;
+    public LinearLayout tref, karo, herc, pik;
+
+    public Boja oznacenaBoja;
+    public Tim oznaceniTim;
 
     Polje oznacenoPolje;
 
     PoslovniSloj poslovni;
+
+    View.OnClickListener oznaceniAdut = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch(view.getId()){
+                case R.id.tref:{
+                    oznacenaBoja = Boja.TREF;
+                    tref.setBackgroundColor(getResources().getColor(R.color.dark_green));
+                    karo.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    herc.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    pik.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    break;
+                }
+                case R.id.karo:{
+                    oznacenaBoja = Boja.KARO;
+                    tref.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    karo.setBackgroundColor(getResources().getColor(R.color.dark_green));
+                    herc.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    pik.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    break;
+                }
+                case R.id.herc:{
+                    oznacenaBoja = Boja.HERC;
+                    tref.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    karo.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    herc.setBackgroundColor(getResources().getColor(R.color.dark_green));
+                    pik.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    break;
+                }
+                case R.id.pik:{
+                    oznacenaBoja = Boja.PIK;
+                    tref.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    karo.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    herc.setBackgroundColor(getResources().getColor(R.color.eggwhite));
+                    pik.setBackgroundColor(getResources().getColor(R.color.dark_green));
+                    break;
+                }
+            }
+        }
+    };
 
     View.OnClickListener oznaceniBodovi = new View.OnClickListener() {
         @Override
@@ -110,6 +154,17 @@ public class DodajActivity extends AppCompatActivity{
         txtUkupnoMi = this.findViewById(R.id.ukupno_mi);
         txtUkupnoVi = this.findViewById(R.id.ukupno_vi);
 
+        tref = this.findViewById(R.id.tref);
+        herc = this.findViewById(R.id.herc);
+        karo = this.findViewById(R.id.karo);
+        pik = this.findViewById(R.id.pik);
+
+        tref.setOnClickListener(oznaceniAdut);
+        herc.setOnClickListener(oznaceniAdut);
+        karo.setOnClickListener(oznaceniAdut);
+        pik.setOnClickListener(oznaceniAdut);
+
+
         rgTim = this.findViewById(R.id.rg_zvao);
         rgAdut = this.findViewById(R.id.rg_adut);
 
@@ -176,6 +231,7 @@ public class DodajActivity extends AppCompatActivity{
 
             rgTim.check(rgTim.getChildAt(updatePodaci.getInt("zvao")-1).getId());
             rgAdut.check(rgAdut.getChildAt(updatePodaci.getInt("adut")-1).getId());
+            //TODO kod azuriranja nek se oznaci boja
 
             racunanjeUkupnihBodova();
 
@@ -196,7 +252,7 @@ public class DodajActivity extends AppCompatActivity{
             Toast.makeText(this, "Potrebno je izabrati koji tim koji je zvao", Toast.LENGTH_SHORT).show();
             uspjeh = false;
         }
-        if(rgAdut.getCheckedRadioButtonId() == -1){
+        if(oznacenaBoja == null){
             Toast.makeText(this, "Potrebno je izabrati adut", Toast.LENGTH_SHORT).show();
             uspjeh = false;
         }
@@ -359,6 +415,6 @@ public class DodajActivity extends AppCompatActivity{
     }
 
     private Zapis stvoriZapisZaAzuriranje(){
-        return new Zapis(idZapis, Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), tekucaPartija, rgAdut.indexOfChild(findViewById(rgAdut.getCheckedRadioButtonId())) + 1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId())) + 1);
+        return new Zapis(idZapis, Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), tekucaPartija, oznacenaBoja.ordinal()+1, rgTim.indexOfChild(findViewById(rgTim.getCheckedRadioButtonId())) + 1);
     }
 }

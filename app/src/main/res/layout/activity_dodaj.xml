@@ -226,6 +226,110 @@
         </RadioGroup>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/aduti_odabir_bg"
+        android:layout_marginHorizontal="10dp"
+        android:gravity="center"
+        android:layout_below="@id/adut">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2" >
+        </Space>
+
+        <LinearLayout
+            android:id="@+id/tref"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ikona_bg"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/clubs"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="3" >
+        </Space>
+
+        <LinearLayout
+            android:id="@+id/pik"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ikona_bg"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <ImageView
+
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/spades_icon"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="3" >
+        </Space>
+
+        <LinearLayout
+            android:id="@+id/herc"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ikona_bg"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <ImageView
+
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/hearts_icon"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="3" >
+        </Space>
+
+        <LinearLayout
+            android:id="@+id/karo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ikona_bg"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <ImageView
+
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/diamond_icon"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2" >
+        </Space>
+
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/brojevi"
         android:layout_width="match_parent"

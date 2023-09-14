@@ -272,6 +272,11 @@ public class DodajActivity extends AppCompatActivity{
             uspjeh = false;
         }
 
+        if(oznaceniTim == null){
+            Toast.makeText(this, "Potrebno je izabrati tim koji je zvao", Toast.LENGTH_SHORT).show();
+            uspjeh = false;
+        }
+
         return uspjeh;
     }
 
@@ -365,6 +370,7 @@ public class DodajActivity extends AppCompatActivity{
         switch (oznacenoPolje){
             case bodMi:{
                 String broj = txtBodMi.getText().toString();
+                if(broj.length() == 3) break;
                 if(broj.equals("0")){
                     broj = zaDodati;
                 }else{
@@ -376,6 +382,7 @@ public class DodajActivity extends AppCompatActivity{
             }
             case bodVi:{
                 String broj = txtBodVi.getText().toString();
+                if(broj.length() == 3) break;
                 if(broj.equals("0")){
                     broj = zaDodati;
                 }else{
@@ -387,6 +394,7 @@ public class DodajActivity extends AppCompatActivity{
             }
             case zvanjaMi:{
                 String broj = txtZvanjaMi.getText().toString();
+                if(broj.length() == 3) break;
                 if(broj.equals("0")){
                     broj = zaDodati;
                 }else{
@@ -397,6 +405,7 @@ public class DodajActivity extends AppCompatActivity{
             }
             case zvanjaVi:{
                 String broj = txtZvanjaVi.getText().toString();
+                if(broj.length() == 3) break;
                 if(broj.equals("0")){
                     broj = zaDodati;
                 }else{

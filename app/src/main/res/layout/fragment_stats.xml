@@ -7,15 +7,104 @@
     tools:context=".StatsFragment">
 
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Statistika"/>
-        
-    </RelativeLayout>
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/spinner_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:padding="10dp"
+                android:background="@drawable/spinner_layout_bg"
+                android:elevation="5dp">
+                <Spinner
+                    android:id="@+id/odabir_igre_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_green"
+                    android:padding="15dp"
+                    android:layout_marginHorizontal="7dp"
+                    />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ukupni_podaci"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spinner_layout"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <RelativeLayout
+                    android:id="@+id/broj_partija_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="12.5dp"
+                    android:background="@drawable/statistika_pozadina"
+                    android:elevation="5dp">
+
+                    <TextView
+                        android:id="@+id/broj_partija_tekst"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/eggwhite"
+                        android:text="BROJ PARTIJA"
+                        android:textAlignment="center"/>
+
+                    <TextView
+                        android:id="@+id/broj_partija"
+                        android:layout_below="@id/broj_partija_tekst"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/eggwhite"
+                        android:text="BROJ PARTIJA"
+                        android:textAlignment="center"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/najcesca_boja_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12.5dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/statistika_pozadina"
+                    android:elevation="5dp">
+
+                    <TextView
+                        android:id="@+id/najcesca_boja_tekst"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/eggwhite"
+                        android:text="NAJČEŠĆA BOJA"
+                        android:textAlignment="center"/>
+
+                    <TextView
+                        android:id="@+id/najcesca_boja_ikona"
+                        android:layout_below="@id/najcesca_boja_tekst"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/eggwhite"
+                        android:text="BROJ PARTIJA"
+                        android:textAlignment="center"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </FrameLayout>

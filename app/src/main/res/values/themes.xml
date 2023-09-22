@@ -13,4 +13,12 @@
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="SpinnerStil"
+        parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/eggwhite</item>
+        <item name="android:spinnerItemStyle">@style/SpinnerStil</item>
+    </style>
 </resources>

@@ -13,4 +13,13 @@
     <string name="bodovi">BODOVI</string>
     <string name="zvanja">ZVANJA</string>
     <string name="ukupno">UKUPNO</string>
+    <string name="broj_partija">BROJ PARTIJA</string>
+    <string name="najcesca_boja">NAJČEŠĆA BOJA</string>
+
+    <string-array name="spinnerDummyItems">
+        <item>item1</item>
+        <item>item2</item>
+        <item>item3</item>
+        <item>item4</item>
+    </string-array>
 </resources>

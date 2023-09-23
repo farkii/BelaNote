@@ -13,7 +13,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="30dp">
 
             <RelativeLayout
                 android:id="@+id/spinner_layout"
@@ -21,20 +22,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="18dp"
-                android:padding="7dp"
                 android:background="@drawable/spinner_layout_bg"
-                android:elevation="5dp">
+                android:elevation="5dp"
+                android:padding="7dp">
+
                 <Spinner
                     android:id="@+id/odabir_igre_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/dark_green"
-                    android:padding="15dp"
-                    android:theme="@style/SpinnerStil"
-                    android:entries="@array/spinnerDummyItems"
-                    android:popupBackground="@color/dark_green"
                     android:layout_marginHorizontal="7dp"
-                    />
+                    android:background="@color/dark_green"
+                    android:entries="@array/spinnerDummyItems"
+                    android:padding="15dp"
+                    android:popupBackground="@color/dark_green"
+                    android:theme="@style/SpinnerStil" />
 
             </RelativeLayout>
 
@@ -43,17 +44,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spinner_layout"
-                android:orientation="horizontal"
                 android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
                 android:paddingVertical="10dp">
 
                 <RelativeLayout
                     android:id="@+id/broj_partija_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="12.5dp"
+                    android:layout_marginBottom="7dp"
+                    android:layout_weight="1"
                     android:background="@drawable/statistika_pozadina"
                     android:elevation="5dp">
 
@@ -62,20 +64,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
-                        android:textColor="@color/eggwhite"
                         android:text="@string/broj_partija"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite" />
 
                     <TextView
                         android:id="@+id/broj_partija"
-                        android:layout_below="@id/broj_partija_tekst"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/eggwhite"
-                        android:padding="38dp"
-                        android:textSize="40sp"
+                        android:layout_below="@id/broj_partija_tekst"
+                        android:padding="36dp"
                         android:text="0"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="40sp" />
 
                 </RelativeLayout>
 
@@ -83,9 +85,10 @@
                     android:id="@+id/najcesca_boja_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginStart="12.5dp"
                     android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="7dp"
+                    android:layout_weight="1"
                     android:background="@drawable/statistika_pozadina"
                     android:elevation="5dp">
 
@@ -94,22 +97,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
-                        android:textColor="@color/eggwhite"
                         android:text="@string/najcesca_boja"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@id/najcesca_boja_tekst">
+
                         <LinearLayout
                             android:id="@+id/najcesca_boja"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
 
-                            android:layout_gravity="center"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
+                            android:layout_gravity="center"
                             android:background="@drawable/ikona_bg"
                             android:gravity="center"
                             android:orientation="horizontal"
@@ -126,6 +130,302 @@
                 </RelativeLayout>
 
             </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/miViStatistika"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ukupni_podaci"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/spinner_layout_bg"
+                android:paddingVertical="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/mi"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/vi"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/statistika_ukupno_zvanja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/miViStatistika"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/statistika_pozadina"
+                android:elevation="7dp">
+
+
+
+                    <TextView
+                        android:id="@+id/statistika_ukupno_zvanja_tekst"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/ukupno_zvanja"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="16sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/statistika_ukupno_zvanja_tekst"
+                        android:layout_marginVertical="20dp">
+
+                        <TextView
+                            android:id="@+id/statistika_ukupno_zvanja_mi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="0"
+                            android:textAlignment="center"
+                            android:textColor="@color/eggwhite"
+                            android:textSize="20sp"/>
+
+                        <TextView
+                            android:id="@+id/statistika_ukupno_zvanja_vi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="0"
+                            android:textAlignment="center"
+                            android:textColor="@color/eggwhite"
+                            android:textSize="20sp"/>
+
+                    </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/statistika_najvece_zvanje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/statistika_ukupno_zvanja"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/statistika_pozadina"
+                android:elevation="7dp">
+
+
+
+                <TextView
+                    android:id="@+id/statistika_najvece_zvanje_tekst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/najvece_zvanje"
+                    android:textAlignment="center"
+                    android:textColor="@color/eggwhite"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/statistika_najvece_zvanje_tekst"
+                    android:layout_marginVertical="20dp">
+
+                    <TextView
+                        android:id="@+id/statistika_najvece_zvanje_mi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/statistika_najvece_zvanje_vi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/statistika_najcesca_boja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/statistika_najvece_zvanje"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/statistika_pozadina"
+                android:elevation="7dp">
+
+
+
+                <TextView
+                    android:id="@+id/statistika_najcesca_boja_tekst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/najcesca_boja"
+                    android:textAlignment="center"
+                    android:textColor="@color/eggwhite"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/statistika_najcesca_boja_tekst"
+                    android:layout_marginVertical="20dp">
+
+                    <TextView
+                        android:id="@+id/statistika_najcesca_boja_mi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/statistika_najcesca_boja_vi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/statistika_broj_zvanja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/statistika_najcesca_boja"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/statistika_pozadina"
+                android:elevation="7dp">
+
+
+
+                <TextView
+                    android:id="@+id/statistika_broj_zvanja_tekst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/ukupno_zvanja"
+                    android:textAlignment="center"
+                    android:textColor="@color/eggwhite"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/statistika_broj_zvanja_tekst"
+                    android:layout_marginVertical="20dp">
+
+                    <TextView
+                        android:id="@+id/statistika_broj_zvanja_mi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/statistika_broj_zvanja_vi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/statistika_broj_padova"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/statistika_broj_zvanja"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/statistika_pozadina"
+                android:elevation="7dp">
+
+
+
+                <TextView
+                    android:id="@+id/statistika_broj_padova_tekst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/ukupno_zvanja"
+                    android:textAlignment="center"
+                    android:textColor="@color/eggwhite"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/statistika_broj_padova_tekst"
+                    android:layout_marginVertical="20dp">
+
+                    <TextView
+                        android:id="@+id/statistika_broj_padova_mi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/statistika_broj_padova_vi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textColor="@color/eggwhite"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

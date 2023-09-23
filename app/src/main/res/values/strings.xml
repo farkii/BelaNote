@@ -15,6 +15,8 @@
     <string name="ukupno">UKUPNO</string>
     <string name="broj_partija">BROJ PARTIJA</string>
     <string name="najcesca_boja">NAJČEŠĆA BOJA</string>
+    <string name="ukupno_zvanja">UKUPNO ZVANJA</string>
+    <string name="najvece_zvanje">NAJVEĆE ZVANJE</string>
 
     <string-array name="spinnerDummyItems">
         <item>item1</item>

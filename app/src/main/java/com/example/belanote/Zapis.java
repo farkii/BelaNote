@@ -6,7 +6,7 @@ import android.util.Log;
 public class Zapis {
     private static final String TAG = "Zapis";
 
-    private int bodoviMi, bodoviVi, zvanjaMi, zvanjaVi, id_partija, id_boja, id_zvao;
+    private int idZapis, bodoviMi, bodoviVi, zvanjaMi, zvanjaVi, id_partija, id_boja, id_zvao, ukupnoMi, ukupnoVi;
     private boolean tim_pao;
 
     private Boja boja;
@@ -15,7 +15,8 @@ public class Zapis {
     // TODO dodati jos podatke o tome tko je zvao, koji je adut bio itd.
 
 
-    public Zapis(int bodoviMi, int bodoviVi, int zvanjaMi, int zvanjaVi, int id_partija, int id_boja, int id_zvao, boolean tim_pao) {
+    public Zapis(int idZapis, int bodoviMi, int bodoviVi, int zvanjaMi, int zvanjaVi, int id_partija, int id_boja, int id_zvao) {
+        this.idZapis = idZapis;
         this.bodoviMi = bodoviMi;
         this.bodoviVi = bodoviVi;
         this.zvanjaMi = zvanjaMi;
@@ -23,7 +24,9 @@ public class Zapis {
         this.id_partija = id_partija;
         this.id_boja = id_boja;
         this.id_zvao = id_zvao;
-        this.tim_pao = tim_pao;
+//        this.tim_pao = tim_pao;  u konstruktoru provjeriti da li je tim pao ili ne
+        this.ukupnoMi = bodoviMi + zvanjaMi;
+        this.ukupnoVi = bodoviVi + zvanjaVi;
 
         switch(id_boja){
             case 1:{
@@ -51,10 +54,12 @@ public class Zapis {
         switch(id_zvao){
             case 1:{
                 zvao = Tim.MI;
+                this.tim_pao = ukupnoMi <= ukupnoVi;
                 break;
             }
             case 2:{
                 zvao = Tim.VI;
+                this.tim_pao = ukupnoVi <= ukupnoMi;
                 break;
             }
             default:{
@@ -142,5 +147,17 @@ public class Zapis {
 
     public void setId_zvao(int id_zvao) {
         this.id_zvao = id_zvao;
+    }
+
+    public int getUkupnoMi() {
+        return ukupnoMi;
+    }
+
+    public int getUkupnoVi() {
+        return ukupnoVi;
+    }
+
+    public int getIdZapis() {
+        return idZapis;
     }
 }

@@ -3,4 +3,23 @@
     <string name="dodaj_zapis">Dodaj zapis</string>
     <string name="mi">Mi</string>
     <string name="vi">Vi</string>
+    <string name="home">Home</string>
+    <string name="statistics">Statistics</string>
+    <string name="settings">Settings</string>
+    <string name="postavke_igre">Postavke igre</string>
+    <string name="obrisi_podatke_igre">Obriši podatke igre</string>
+    <string name="ostavi_recenziju">Ostavi recenziju</string>
+    <string name="granica_igre">Unesite granicu igre</string>
+    <string name="bodovi">BODOVI</string>
+    <string name="zvanja">ZVANJA</string>
+    <string name="ukupno">UKUPNO</string>
+    <string name="broj_partija">BROJ PARTIJA</string>
+    <string name="najcesca_boja">NAJČEŠĆA BOJA</string>
+
+    <string-array name="spinnerDummyItems">
+        <item>item1</item>
+        <item>item2</item>
+        <item>item3</item>
+        <item>item4</item>
+    </string-array>
 </resources>

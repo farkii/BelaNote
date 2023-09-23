@@ -1,45 +1,61 @@
 package com.example.belanote;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.database.Cursor;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.view.MenuItem;
 
-import java.util.ArrayList;
-import java.util.Random;
+import com.example.belanote.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public RecyclerView recViewZapisi;
-    public Button btnDodajZapis;
-    public ArrayList<Zapis> zapisi;
-    PoslovniSloj poslovni;
+    private static final String TAG = "MainActivity";
+    private BottomNavigationView navBar;
 
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        poslovni = PoslovniSloj.getInstance(this);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        zapisi = new ArrayList<Zapis>();
+        setContentView(binding.getRoot());
 
+        navBar = this.findViewById(R.id.bottomNavBar);
 
-        recViewZapisi = this.findViewById(R.id.recViewRezultati);
-        btnDodajZapis = this.findViewById(R.id.btnDodajZapis);
+        binding.bottomNavBar.setOnItemSelectedListener(item -> {
+            switch(item.getItemId()){
+                case R.id.pageHome:{
+                    zamijeniFragment(new HomeFragment());
+                    break;
+                }
+                case R.id.pageStatistics:{
+                    zamijeniFragment(new StatsFragment());
+                    break;
+                }
+                case R.id.pageSettings:{
+                    zamijeniFragment(new PostavkeFragment());
+                    break;
+                }
+            }
 
-        azuriraj();
+            return true;
+        });
+
+        navBar.setSelectedItemId(R.id.pageHome);
     }
 
-    public void azuriraj(){
-        zapisi = poslovni.dohvatiSveZapise();
-        RedZapisaAdapter adapter = new RedZapisaAdapter(zapisi);
-        recViewZapisi.setAdapter(adapter);
-        recViewZapisi.setLayoutManager(new LinearLayoutManager(this));  // saznati kako se azuriraju podaci u rec viewu bez da se svaki put stvara novi
+
+    private void zamijeniFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentFrame, fragment);
+        fragmentTransaction.commit();
     }
 }

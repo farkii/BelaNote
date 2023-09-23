@@ -215,7 +215,7 @@ public class DodajActivity extends AppCompatActivity{
                             Log.w(TAG, "Pogreska kod azuriranja podataka");
                         }
                     }else {
-                        if (!poslovni.unesiZapis(Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), oznacenaBoja.ordinal()+1, oznaceniTim.ordinal()+1, pao, tekucaPartija)) {
+                        if (!poslovni.unesiZapis(Integer.parseInt(txtBodMi.getText().toString()), Integer.parseInt(txtBodVi.getText().toString()), Integer.parseInt(txtZvanjaMi.getText().toString()), Integer.parseInt(txtZvanjaVi.getText().toString()), oznacenaBoja.ordinal()+1, oznaceniTim.ordinal()+1, timPao(), tekucaPartija)) {
                             Log.w(TAG, "Pogreska kod unosa podataka");
                         }
                     }
@@ -485,6 +485,16 @@ public class DodajActivity extends AppCompatActivity{
 
         txtUkupnoMi.setText(Integer.toString(bodMi + zvanjaMi));
         txtUkupnoVi.setText(Integer.toString(bodVi + zvanjaVi));
+    }
+
+    private boolean timPao(){
+        int mi = Integer.parseInt(txtUkupnoMi.getText().toString());
+        int vi = Integer.parseInt(txtUkupnoVi.getText().toString());
+
+        if(((oznaceniTim.ordinal()+1 == 1) && (mi <= vi)) || ((oznaceniTim.ordinal()+1 == 2) && (mi >= vi))){
+            return true;
+        }
+        return false;
     }
 
     private Zapis stvoriZapisZaAzuriranje(){

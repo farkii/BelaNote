@@ -9,6 +9,7 @@ import android.provider.ContactsContract;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PoslovniSloj {
     private static final String TAG = "PoslovniSloj";
@@ -128,6 +129,26 @@ public class PoslovniSloj {
         return uspjeh;
     }
 
+    public List<String> dohvatiPartije(){
+        List<String> partije = new ArrayList<String>();
+        partije.add("SVE IGRE");
+
+        try {
+            dbAdapter.open();
+            Cursor cursor = dbAdapter.dohvatiPartije();
+            while(cursor.moveToNext()){
+                partije.add(String.valueOf(cursor.getInt(1)) + ". IGRA");
+            }
+            cursor.close();
+            dbAdapter.close();
+        }catch (Exception e){
+            Toast.makeText(context, "Pogreska kod dohvacanja partije", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
+        return partije;
+    }
+
     public int dohvatiZadnjuPartiju(){
         int partija = -1;
 
@@ -193,6 +214,15 @@ public class PoslovniSloj {
         }
 
         return dohvatiZadnjuPartiju();
+    }
+
+    public Bundle izracunajStatistiku(List<Zapis> zapisi){
+        Bundle podaci = new Bundle();
+        for (int i = 0; i < zapisi.size(); i++){
+            Zapis zapis = zapisi.get(i);
+            System.out.println(zapis.getBodoviMi());
+        }
+        return podaci;
     }
 
 }

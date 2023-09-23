@@ -90,6 +90,8 @@ public class HomeFragment extends Fragment {
             postavke.dodajGranicu(1001);
         }
 
+        tekucaPartija = poslovni.dohvatiZadnjuPartiju();
+
     }
 
     @Override

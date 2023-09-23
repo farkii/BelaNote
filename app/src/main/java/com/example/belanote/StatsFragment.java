@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +24,7 @@ import android.widget.Spinner;
 public class StatsFragment extends Fragment {
 
     private Spinner spinner;
+    private PoslovniSloj poslovniSloj;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,7 +65,7 @@ public class StatsFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        //TODO dohvatiti sve igre a ako nema igra onda samo ostane "SVE IGRE"
+        poslovniSloj = PoslovniSloj.getInstance(getActivity());
     }
 
     @Override
@@ -75,10 +80,28 @@ public class StatsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         spinner = view.findViewById(R.id.odabir_igre_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.spinnerDummyItems, R.layout.spinner_list);
-
+        List<String> igre = poslovniSloj.dohvatiPartije();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), R.layout.spinner_list, igre);
         adapter.setDropDownViewResource(R.layout.spinner_list);
-
         spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                azuriraj(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
+    }
+
+    public void azuriraj(int i){
+        List<Zapis> zapisi = poslovniSloj.dohvatiSveZapise(i);
+        Bundle podaci = poslovniSloj.izracunajStatistiku(zapisi);
+
     }
 }

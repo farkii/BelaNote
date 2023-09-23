@@ -170,7 +170,13 @@ public class DataBaseAdapter {
     }
 
     public Cursor dohvatiSveZapise(int partija){
-        return db.rawQuery("SELECT * FROM " + TABLICA_ZAPISI + " WHERE " + FK_ID_PARTIJA + " = ?", new String[]{Integer.toString(partija)});
+        Cursor cursor = null;
+        if (partija == 0){
+            cursor = db.rawQuery("SELECT * FROM " + TABLICA_ZAPISI, null);
+        }else{
+            cursor = db.rawQuery("SELECT * FROM " + TABLICA_ZAPISI + " WHERE " + FK_ID_PARTIJA + " = ?", new String[]{Integer.toString(partija)});
+        }
+        return cursor;
     }
 
 

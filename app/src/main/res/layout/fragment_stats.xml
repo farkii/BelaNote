@@ -427,7 +427,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/ukupno_zvanja"
+                    android:text="@string/ukupno_padova"
                     android:textAlignment="center"
                     android:textColor="@color/eggwhite"
                     android:textSize="16sp"/>

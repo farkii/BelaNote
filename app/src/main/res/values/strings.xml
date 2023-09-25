@@ -17,6 +17,7 @@
     <string name="najcesca_boja">NAJČEŠĆA BOJA</string>
     <string name="ukupno_zvanja">UKUPNO ZVANJA</string>
     <string name="najvece_zvanje">NAJVEĆE ZVANJE</string>
+    <string name="ukupno_padova">UKUPNO PADOVA</string>
 
     <string-array name="spinnerDummyItems">
         <item>item1</item>
